@@ -601,12 +601,72 @@ function TrustCards() {
 // ==================== TECH STACKS ====================
 function TechStacks() {
   const stacks = [
-    { category: 'Languages', items: ['Python', 'JavaScript', 'TypeScript', 'SQL'] },
-    { category: 'ML/AI', items: ['PyTorch', 'TensorFlow', 'LangChain', 'HuggingFace'] },
-    { category: 'Backend', items: ['FastAPI', 'Node.js', 'Express', 'Flask'] },
-    { category: 'Frontend', items: ['React', 'Next.js', 'Tailwind CSS', 'Vite'] },
-    { category: 'Data', items: ['PySpark', 'PostgreSQL', 'MongoDB', 'Redis'] },
-    { category: 'DevOps', items: ['Docker', 'AWS', 'GitHub Actions', 'Render'] },
+    {
+      category: 'Languages',
+      icon: Code2,
+      color: 'text-electric',
+      items: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'Go', 'Kotlin', 'Dart', 'SQL', 'Bash/Shell']
+    },
+    {
+      category: 'ML / AI & Data Science',
+      icon: Brain,
+      color: 'text-emerald',
+      items: ['PyTorch', 'TensorFlow', 'scikit-learn', 'LangChain', 'HuggingFace', 'OpenCV', 'YOLOv8', 'Pandas', 'NumPy', 'spaCy', 'ChromaDB', 'Pinecone', 'Ollama', 'LlamaIndex']
+    },
+    {
+      category: 'Backend & APIs',
+      icon: Server,
+      color: 'text-electric',
+      items: ['FastAPI', 'Django', 'Node.js', 'Express', 'Flask', 'Spring Boot', 'GraphQL', 'REST APIs', 'WebSockets', 'gRPC', 'JWT Auth', 'OAuth2']
+    },
+    {
+      category: 'Frontend & UI',
+      icon: Globe,
+      color: 'text-emerald',
+      items: ['React', 'Next.js', 'Tailwind CSS', 'Vite', 'Redux', 'Framer Motion', 'shadcn/ui', 'HTML5/CSS3', 'Material UI', 'Bootstrap', 'Three.js']
+    },
+    {
+      category: 'Mobile Development',
+      icon: Smartphone,
+      color: 'text-electric',
+      items: ['React Native', 'Flutter', 'Kotlin', 'Swift', 'Android Studio', 'Xcode', 'Expo', 'Firebase SDK', 'Push Notifications', 'Offline Storage']
+    },
+    {
+      category: 'Databases',
+      icon: Database,
+      color: 'text-emerald',
+      items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Elasticsearch', 'Firebase', 'Supabase', 'SQLite', 'Neo4j', 'InfluxDB', 'Vector DBs']
+    },
+    {
+      category: 'Big Data & Analytics',
+      icon: Cpu,
+      color: 'text-electric',
+      items: ['PySpark', 'Apache Kafka', 'Apache Airflow', 'Hadoop', 'Power BI', 'Tableau', 'ETL Pipelines', 'Data Warehousing', 'Stream Processing', 'Grafana']
+    },
+    {
+      category: 'Cloud & DevOps',
+      icon: Cloud,
+      color: 'text-emerald',
+      items: ['AWS (EC2, S3, Lambda)', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'CI/CD', 'Nginx', 'Vercel', 'Render', 'Netlify']
+    },
+    {
+      category: 'IoT & Embedded',
+      icon: Cpu,
+      color: 'text-electric',
+      items: ['Arduino', 'Raspberry Pi', 'ESP32/ESP8266', 'MQTT Protocol', 'Sensor Integration', 'IoT Dashboards', 'Edge Computing', 'LoRaWAN', 'Node-RED']
+    },
+    {
+      category: 'Cybersecurity',
+      icon: Shield,
+      color: 'text-emerald',
+      items: ['Wireshark', 'Metasploit', 'Burp Suite', 'Kali Linux', 'Nmap', 'OWASP Top 10', 'Penetration Testing', 'Network Security', 'Cryptography', 'SSL/TLS']
+    },
+    {
+      category: 'Tools & Workflow',
+      icon: Terminal,
+      color: 'text-electric',
+      items: ['Git/GitHub', 'VS Code', 'Postman', 'Jira', 'Figma', 'Linux/Unix', 'Jupyter', 'Google Colab', 'DBeaver', 'Insomnia', 'Swagger/OpenAPI']
+    },
   ];
 
   return (
@@ -623,23 +683,27 @@ function TechStacks() {
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             We work with the same tools used at top tech companies — not outdated academic frameworks.
+            From AI/ML to Cybersecurity, we've got you covered.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {stacks.map((stack) => (
             <div
               key={stack.category}
-              className="p-6 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm"
+              className="group p-5 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-300 hover:bg-slate-900/50"
             >
-              <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
-                {stack.category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex items-center gap-2 mb-4">
+                <stack.icon className={`w-4 h-4 ${stack.color}`} />
+                <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+                  {stack.category}
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
                 {stack.items.map((item) => (
                   <span
                     key={item}
-                    className="px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-800/80 text-slate-200 border border-slate-700/50 hover:border-electric/30 hover:text-electric transition-colors cursor-default"
+                    className="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-800/80 text-slate-300 border border-slate-700/50 hover:border-electric/30 hover:text-electric transition-colors cursor-default"
                   >
                     {item}
                   </span>
@@ -647,6 +711,13 @@ function TechStacks() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom note */}
+        <div className="mt-12 text-center">
+          <p className="text-sm text-slate-500 italic">
+            Don't see your preferred tech? We adapt to your requirements. Just mention it in your project brief.
+          </p>
         </div>
       </div>
     </section>
