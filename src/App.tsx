@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import {
   FlaskConical, Terminal, Menu, X, ArrowRight, CheckCircle2,
   Brain, Eye, Database, Globe, ChevronDown, Shield, Zap,
   Users, Code2, Cloud, MessageSquare, Phone, MapPin,
   GraduationCap, Calendar, DollarSign, FileText, Send,
   ExternalLink, Star, Clock, Target, Layers, Smartphone,
-  Server, Cpu, Briefcase, Rocket
+  Server, Cpu, Briefcase, Rocket, Award, TrendingUp, AlertCircle
 } from 'lucide-react';
 
 // ==================== NAVBAR ====================
@@ -21,10 +22,10 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
 
   const navLinks = [
     { label: 'What We Build', href: '#we-build' },
-    { label: 'Lab Domains', href: '#domains' },
     { label: 'Process', href: '#process' },
     { label: 'Tech Stacks', href: '#stacks' },
-    { label: 'Student Reviews', href: '#reviews' },
+    { label: 'Pricing', href: '#pricing' },
+    { label: 'Reviews', href: '#reviews' },
     { label: 'FAQ', href: '#faq' },
   ];
 
@@ -724,6 +725,264 @@ function TechStacks() {
   );
 }
 
+// ==================== PRICING ====================
+function Pricing({ onOpenModal }: { onOpenModal: () => void }) {
+  const plans = [
+    {
+      name: 'Starter',
+      subtitle: 'Mini Project / Bug Fix',
+      price: '₹3,000',
+      priceNote: 'Starting from',
+      features: [
+        '1-week mentorship',
+        'Mini project or bug fixing',
+        'Code walkthrough session',
+        'Basic viva preparation',
+        'Email support',
+      ],
+      popular: false,
+      color: 'border-slate-700/50',
+    },
+    {
+      name: 'Professional',
+      subtitle: 'Major Capstone Project',
+      price: '₹8,000',
+      priceNote: 'Starting from',
+      features: [
+        '2–4 week mentorship',
+        'Full capstone project build',
+        'Live paired-coding sessions',
+        'Cloud deployment (AWS/Render)',
+        'Architecture diagrams & PPT',
+        'Mock viva sessions (2x)',
+        'Post-submission support (7 days)',
+        'Priority WhatsApp support',
+      ],
+      popular: true,
+      color: 'border-electric',
+    },
+    {
+      name: 'Enterprise',
+      subtitle: 'Research / Custom / Complex',
+      price: '₹20,000+',
+      priceNote: 'Custom pricing',
+      features: [
+        '1–3 month mentorship',
+        'Research-grade architecture',
+        'Multi-module system design',
+        'CI/CD & production deployment',
+        'Unlimited viva prep sessions',
+        'Dedicated mentor assignment',
+        'Post-submission support (30 days)',
+        'Resume & portfolio integration',
+        'Career guidance session',
+      ],
+      popular: false,
+      color: 'border-slate-700/50',
+    },
+  ];
+
+  return (
+    <section id="pricing" className="py-24 lg:py-32 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
+            <DollarSign className="w-3.5 h-3.5 text-emerald" />
+            <span className="text-xs text-slate-400 font-mono">PRICING</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Transparent <span className="text-emerald">Pricing</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            No hidden fees. Pay for mentorship hours, not pre-built code. 
+            Every plan includes complete code ownership and viva preparation.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={`relative p-6 lg:p-8 rounded-2xl border ${plan.color} bg-slate-900/30 backdrop-blur-sm ${plan.popular ? 'glow-blue scale-[1.02]' : ''} transition-all duration-300`}
+            >
+              {plan.popular && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-electric text-white text-xs font-bold rounded-full">
+                  MOST POPULAR
+                </div>
+              )}
+
+              <div className="mb-6">
+                <h3 className="text-xl font-bold text-white">{plan.name}</h3>
+                <p className="text-sm text-slate-400">{plan.subtitle}</p>
+              </div>
+
+              <div className="mb-6">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-4xl font-bold text-white">{plan.price}</span>
+                </div>
+                <p className="text-xs text-slate-500 mt-1">{plan.priceNote}</p>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2 text-sm text-slate-300">
+                    <CheckCircle2 className="w-4 h-4 text-emerald flex-shrink-0 mt-0.5" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={onOpenModal}
+                className={`w-full py-3 rounded-xl font-semibold transition-all duration-200 ${
+                  plan.popular
+                    ? 'bg-electric hover:bg-electric-light text-white'
+                    : 'border border-slate-700 hover:border-electric text-slate-300 hover:text-white'
+                }`}
+              >
+                Get Started
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-center text-sm text-slate-500 mt-8">
+          * Final pricing depends on project complexity, timeline, and technologies involved. 
+          Schedule a free consultation for exact quotes.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ==================== WHY CHOOSE US ====================
+function WhyChooseUs() {
+  const comparisons = [
+    { feature: 'Code Understanding', us: '100% — You write every line', them: '0% — Pre-built, unexplained' },
+    { feature: 'Viva Preparation', us: 'Mock sessions + Q&A bank', them: 'None' },
+    { feature: 'Deployment', us: 'Live cloud deployment', them: 'Localhost only' },
+    { feature: 'Architecture', us: 'Custom, production-grade', them: 'Generic templates' },
+    { feature: 'Post-Submission', us: '7–30 days support', them: 'No support' },
+    { feature: 'Modifications', us: 'You can modify anything', them: 'Locked / encrypted code' },
+    { feature: 'Plagiarism Risk', us: 'Zero — built from scratch', them: 'High — reused templates' },
+    { feature: 'Learning Outcome', us: 'Real engineering skills', them: 'None' },
+  ];
+
+  return (
+    <section className="py-24 lg:py-32 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent" />
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
+            <Award className="w-3.5 h-3.5 text-electric" />
+            <span className="text-xs text-slate-400 font-mono">THE DIFFERENCE</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            CogniFactlab vs <span className="text-red-400">Online Project Sellers</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            See why students choose mentorship over copy-paste projects.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-slate-800/50 overflow-hidden">
+          {/* Header */}
+          <div className="grid grid-cols-3 bg-slate-900/80 border-b border-slate-800/50">
+            <div className="p-4 text-sm font-semibold text-slate-400">Feature</div>
+            <div className="p-4 text-sm font-semibold text-electric text-center border-l border-slate-800/50">
+              CogniFactlab
+            </div>
+            <div className="p-4 text-sm font-semibold text-red-400 text-center border-l border-slate-800/50">
+              Online Project Sellers
+            </div>
+          </div>
+
+          {/* Rows */}
+          {comparisons.map((row, idx) => (
+            <div
+              key={row.feature}
+              className={`grid grid-cols-3 ${idx % 2 === 0 ? 'bg-slate-900/20' : 'bg-transparent'}`}
+            >
+              <div className="p-4 text-sm font-medium text-white">{row.feature}</div>
+              <div className="p-4 text-sm text-emerald text-center border-l border-slate-800/30 flex items-center justify-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                <span>{row.us}</span>
+              </div>
+              <div className="p-4 text-sm text-red-400/80 text-center border-l border-slate-800/30 flex items-center justify-center gap-1.5">
+                <X className="w-4 h-4 flex-shrink-0" />
+                <span>{row.them}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 p-6 rounded-xl border border-emerald/20 bg-emerald/5 text-center">
+          <p className="text-emerald font-semibold mb-1">
+            💡 The Bottom Line
+          </p>
+          <p className="text-slate-300 text-sm">
+            Online sellers give you code you can't explain. We give you skills you'll use for your entire career.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ==================== URGENCY BANNER ====================
+function UrgencyBanner({ onOpenModal }: { onOpenModal: () => void }) {
+  return (
+    <section className="py-12 relative">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative p-6 sm:p-8 rounded-2xl border border-yellow-500/20 bg-gradient-to-r from-yellow-500/5 via-orange-500/5 to-red-500/5 overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          
+          <div className="relative flex flex-col sm:flex-row items-center gap-6">
+            <div className="flex-shrink-0">
+              <div className="w-14 h-14 rounded-xl bg-yellow-500/10 flex items-center justify-center">
+                <AlertCircle className="w-7 h-7 text-yellow-400" />
+              </div>
+            </div>
+            
+            <div className="flex-1 text-center sm:text-left">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+                🚨 Tight Deadline? We've Got You.
+              </h3>
+              <p className="text-sm text-slate-400">
+                Submission in 7 days or less? We offer <span className="text-yellow-400 font-semibold">express mentorship</span> with 
+                dedicated daily sessions. Book immediately — slots fill fast during submission season.
+              </p>
+            </div>
+            
+            <button
+              onClick={onOpenModal}
+              className="flex-shrink-0 px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-xl transition-all duration-200 flex items-center gap-2"
+            >
+              <Zap className="w-5 h-5" />
+              Express Booking
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ==================== FLOATING WHATSAPP ====================
+function FloatingWhatsApp() {
+  return (
+    <a
+      href="https://wa.me/919999999999?text=Hi%2C%20I%20am%20interested%20in%20CogniFactlab%20mentorship"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-green-500 hover:bg-green-400 text-white rounded-full shadow-lg shadow-green-500/30 transition-all duration-200 hover:scale-105 group"
+    >
+      <MessageSquare className="w-5 h-5" />
+      <span className="hidden sm:inline text-sm font-semibold">Chat on WhatsApp</span>
+    </a>
+  );
+}
+
 // ==================== FAQ ====================
 function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -855,7 +1114,48 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     setIsSubmitting(true);
 
     try {
-      // Attempt to send to CRM endpoint (will fail silently if not configured)
+      // Send email notification via EmailJS
+      await emailjs.send(
+        'service_cognifactlab', // Your EmailJS service ID
+        'template_project_intake', // Your EmailJS template ID
+        {
+          from_name: formData.fullName,
+          from_email: 'noreply@cognifactlab.com',
+          whatsapp_number: formData.whatsAppNumber,
+          college: formData.college,
+          department: formData.department,
+          degree: formData.degree,
+          year: formData.year,
+          requirement: formData.requirement,
+          project_field: formData.projectField,
+          technologies: formData.technologies.join(', '),
+          project_idea: formData.projectIdea,
+          timeline: formData.timeline,
+          budget: formData.budget,
+          whatsapp_opt_in: formData.whatsAppOptIn ? 'Yes' : 'No',
+          message: `New Project Intake Submission
+
+Name: ${formData.fullName}
+WhatsApp: ${formData.whatsAppNumber}
+College: ${formData.college}
+Department: ${formData.department}
+Degree: ${formData.degree}
+Year: ${formData.year}
+Requirement: ${formData.requirement}
+Project Field: ${formData.projectField}
+Technologies: ${formData.technologies.join(', ')}
+Timeline: ${formData.timeline}
+Budget: ${formData.budget}
+
+Project Idea:
+${formData.projectIdea}
+
+WhatsApp Opt-in: ${formData.whatsAppOptIn ? 'Yes' : 'No'}`,
+        },
+        'YOUR_PUBLIC_KEY' // Your EmailJS public key
+      );
+
+      // Also send to CRM endpoint (Google Apps Script)
       await fetch('https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec', {
         method: 'POST',
         mode: 'no-cors',
@@ -877,8 +1177,9 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           helpRequired: 'Mentorship & Viva Prep',
         }),
       });
-    } catch {
-      // Silent fail for no-cors mode
+    } catch (error) {
+      console.error('Submission error:', error);
+      // Continue even if email fails - CRM might still work
     }
 
     setIsSubmitting(false);
@@ -1307,13 +1608,17 @@ export default function App() {
     <div className="min-h-screen bg-[#0B0F17] text-slate-200">
       <Navbar onOpenModal={() => setIsModalOpen(true)} />
       <Hero onOpenModal={() => setIsModalOpen(true)} />
+      <UrgencyBanner onOpenModal={() => setIsModalOpen(true)} />
       <WhatWeBuild onOpenModal={() => setIsModalOpen(true)} />
       <Process />
       <Domains />
       <TechStacks />
       <TrustCards />
+      <WhyChooseUs />
+      <Pricing onOpenModal={() => setIsModalOpen(true)} />
       <FAQ />
       <Footer />
+      <FloatingWhatsApp />
       <IntakeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
