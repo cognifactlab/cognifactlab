@@ -4,7 +4,8 @@ import {
   Brain, Eye, Database, Globe, ChevronDown, Shield, Zap,
   Users, Code2, Cloud, MessageSquare, Phone, MapPin,
   GraduationCap, Calendar, DollarSign, FileText, Send,
-  ExternalLink, Star, Clock, Target, Layers
+  ExternalLink, Star, Clock, Target, Layers, Smartphone,
+  Server, Cpu, Briefcase, Rocket
 } from 'lucide-react';
 
 // ==================== NAVBAR ====================
@@ -19,6 +20,7 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
   }, []);
 
   const navLinks = [
+    { label: 'What We Build', href: '#we-build' },
     { label: 'Lab Domains', href: '#domains' },
     { label: 'Process', href: '#process' },
     { label: 'Tech Stacks', href: '#stacks' },
@@ -120,7 +122,7 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
               <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
             <span className="text-xs sm:text-sm text-slate-300 font-medium">
-              Mentorship • Real Architecture • Production Deployment
+              Legitimate Project Mentoring • No Black-Box Code • Viva-Ready
             </span>
           </div>
 
@@ -137,9 +139,9 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-3xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            At CogniFactlab, we bridge the gap between academic theory and industry engineering. 
-            Get 1-on-1 mentorship on complex ML, Big Data, and Full-Stack systems with live 
-            paired-debugging and complete code transparency.
+            We don't hand you pre-built projects. We <span className="text-white font-semibold">mentor you</span> to build 
+            production-grade Software, AI/ML, Mobile Apps, Web Platforms, and Cloud systems — 
+            so you understand every line, ace your viva, and walk away with real engineering skills.
           </p>
 
           {/* CTAs */}
@@ -171,15 +173,136 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
                 <span className="ml-2 text-xs text-slate-500 font-mono">cognifactlab — project-intake</span>
               </div>
               <div className="p-4 font-mono text-sm">
-                <p className="text-emerald">$ cognifactlab init --mentorship</p>
-                <p className="text-slate-400 mt-1">→ Analyzing project scope...</p>
+                <p className="text-emerald">$ cognifactlab init --project-field=ai/ml</p>
+                <p className="text-slate-400 mt-1">→ Analyzing student requirements...</p>
+                <p className="text-slate-400">→ Matching mentor with domain expertise...</p>
                 <p className="text-slate-400">→ Generating architecture blueprint...</p>
-                <p className="text-slate-400">→ Setting up development environment...</p>
-                <p className="text-electric mt-1">✓ Ready for paired coding session</p>
+                <p className="text-slate-400">→ Setting up paired-coding environment...</p>
+                <p className="text-electric mt-1">✓ Ready — you build it, we guide you</p>
                 <p className="text-slate-400 mt-1">$ <span className="cursor-blink"></span></p>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ==================== WHAT WE BUILD ====================
+function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
+  const projects = [
+    {
+      icon: Code2,
+      title: 'Software Development',
+      description: 'Custom desktop applications, CLI tools, automation scripts, and enterprise software built with modern frameworks.',
+      examples: ['Inventory Management Systems', 'ERP Modules', 'Automation Scripts', 'Desktop Applications'],
+      color: 'electric',
+      gradient: 'from-electric to-blue-600'
+    },
+    {
+      icon: Brain,
+      title: 'AI / ML Projects',
+      description: 'Machine learning models, deep learning systems, NLP pipelines, and AI-powered applications with real-world deployment.',
+      examples: ['Image Classification', 'NLP Chatbots', 'Recommendation Engines', 'Predictive Analytics'],
+      color: 'emerald',
+      gradient: 'from-emerald to-teal-600'
+    },
+    {
+      icon: Smartphone,
+      title: 'Mobile Applications',
+      description: 'Cross-platform and native mobile apps with modern UI/UX, API integration, and offline capabilities.',
+      examples: ['React Native Apps', 'Flutter Applications', 'Android/iOS Native', 'Hybrid Mobile Solutions'],
+      color: 'electric',
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    {
+      icon: Globe,
+      title: 'Web Applications',
+      description: 'Full-stack web platforms with responsive UIs, secure backends, databases, and cloud deployment.',
+      examples: ['E-commerce Platforms', 'SaaS Dashboards', 'Portfolio Sites', 'Admin Panels'],
+      color: 'emerald',
+      gradient: 'from-orange-500 to-red-500'
+    },
+    {
+      icon: Cloud,
+      title: 'Cloud Deployment',
+      description: 'Production-ready deployment on AWS, Azure, GCP, or Render with CI/CD, monitoring, and scalability.',
+      examples: ['AWS EC2/Lambda', 'Docker Containers', 'CI/CD Pipelines', 'Serverless Architecture'],
+      color: 'electric',
+      gradient: 'from-cyan-500 to-blue-600'
+    },
+    {
+      icon: Briefcase,
+      title: 'Client-Requirement Projects',
+      description: 'Tailored solutions built to your exact specifications — from ideation to deployment with full documentation.',
+      examples: ['Custom Business Tools', 'Industry-Specific Solutions', 'Research Prototypes', 'Startup MVPs'],
+      color: 'emerald',
+      gradient: 'from-yellow-500 to-orange-500'
+    }
+  ];
+
+  return (
+    <section id="we-build" className="py-24 lg:py-32 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
+            <Rocket className="w-3.5 h-3.5 text-electric" />
+            <span className="text-xs text-slate-400 font-mono">WHAT WE BUILD</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Real Projects. <span className="text-electric">Real Skills.</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            We mentor you through building production-grade projects across every major category — 
+            not pre-packaged templates you can't explain.
+          </p>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <div
+              key={project.title}
+              className="group relative p-6 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-300 hover:bg-slate-900/50 hover:-translate-y-1"
+            >
+              {/* Icon */}
+              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                <project.icon className="w-7 h-7 text-white" />
+              </div>
+
+              {/* Content */}
+              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+              <p className="text-sm text-slate-400 mb-4">{project.description}</p>
+
+              {/* Examples */}
+              <div className="space-y-1.5">
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Example Builds:</p>
+                <ul className="space-y-1">
+                  {project.examples.map((example) => (
+                    <li key={example} className="flex items-center gap-2 text-sm text-slate-300">
+                      <CheckCircle2 className={`w-3.5 h-3.5 flex-shrink-0 ${project.color === 'electric' ? 'text-electric/60' : 'text-emerald/60'}`} />
+                      {example}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-12">
+          <button
+            onClick={onOpenModal}
+            className="px-8 py-4 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-electric/20 inline-flex items-center gap-2"
+          >
+            <Terminal className="w-5 h-5" />
+            Tell Us Your Project Idea
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </section>
@@ -558,6 +681,14 @@ function FAQ() {
     {
       question: 'Can you help with ongoing bug-fixing in existing projects?',
       answer: 'Yes! We offer targeted debugging sessions for existing projects. We don\'t just fix the bug — we explain the root cause, the fix, and how to prevent similar issues. This is listed as "Bug-Fixing" in our project requirements during intake.'
+    },
+    {
+      question: 'What types of projects do you mentor?',
+      answer: 'We cover the full spectrum: Software Development (desktop apps, automation, ERP), AI/ML (image classification, NLP, recommendation engines), Mobile Apps (React Native, Flutter), Web Applications (full-stack SaaS, e-commerce, dashboards), Cloud Deployment (AWS, Docker, CI/CD), Data Engineering (PySpark, telemetry), IoT, and custom client-requirement projects. If it involves code, we can mentor you through building it.'
+    },
+    {
+      question: 'Is this legitimate? Will my college accept it?',
+      answer: '100% legitimate. We position ourselves as project mentoring and implementation support — similar to how a senior engineer mentors a junior. You build the project with guidance, you understand every component, and you can defend it in your viva. Many students use our mentorship to upskill beyond their curriculum. We never encourage academic dishonesty.'
     }
   ];
 
@@ -608,9 +739,11 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     fullName: '',
     whatsAppNumber: '',
     college: '',
+    department: '',
     degree: '',
     year: '',
     requirement: '',
+    projectField: '',
     technologies: [] as string[],
     projectIdea: '',
     timeline: '',
@@ -621,7 +754,7 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const techOptions = ['Python', 'ML/AI', 'Big Data', 'FastAPI', 'React', 'Cloud/DevOps'];
+  const techOptions = ['Python', 'ML/AI', 'Big Data', 'FastAPI', 'React', 'Cloud/DevOps', 'Java', 'Node.js', 'Mobile', 'IoT'];
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -630,9 +763,11 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     else if (!/^\+\d{10,15}$/.test(formData.whatsAppNumber.replace(/\s/g, '')))
       newErrors.whatsAppNumber = 'Enter valid number with country code (e.g., +919876543210)';
     if (!formData.college.trim()) newErrors.college = 'College name is required';
+    if (!formData.department) newErrors.department = 'Please select your department';
     if (!formData.degree) newErrors.degree = 'Please select your degree';
     if (!formData.year) newErrors.year = 'Please select your year';
     if (!formData.requirement) newErrors.requirement = 'Please select project requirement';
+    if (!formData.projectField) newErrors.projectField = 'Please select project field';
     if (formData.technologies.length === 0) newErrors.technologies = 'Select at least one technology';
     if (!formData.projectIdea.trim()) newErrors.projectIdea = 'Please describe your project concept';
     if (!formData.timeline) newErrors.timeline = 'Please select your timeline';
@@ -658,9 +793,11 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           fullName: formData.fullName,
           whatsAppNumber: formData.whatsAppNumber,
           college: formData.college,
+          department: formData.department,
           degree: formData.degree,
           year: formData.year,
           requirement: formData.requirement,
+          projectField: formData.projectField,
           technology: formData.technologies,
           projectIdea: formData.projectIdea,
           timeline: formData.timeline,
@@ -679,8 +816,8 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
       setIsSubmitted(false);
       onClose();
       setFormData({
-        fullName: '', whatsAppNumber: '', college: '', degree: '', year: '',
-        requirement: '', technologies: [], projectIdea: '', timeline: '', budget: '', whatsAppOptIn: false,
+        fullName: '', whatsAppNumber: '', college: '', department: '', degree: '', year: '',
+        requirement: '', projectField: '', technologies: [], projectIdea: '', timeline: '', budget: '', whatsAppOptIn: false,
       });
     }, 3000);
   };
@@ -760,7 +897,7 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               {errors.whatsAppNumber && <p className="text-xs text-red-400 mt-1">{errors.whatsAppNumber}</p>}
             </div>
 
-            {/* College & Degree Row */}
+            {/* College & Department Row */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1.5">
@@ -779,8 +916,49 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1.5">
                   <GraduationCap className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                  Degree & Year *
+                  Department *
                 </label>
+                <select
+                  value={formData.department}
+                  onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.department ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                >
+                  <option value="">Select department</option>
+                  <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                  <option value="Information Technology">Information Technology</option>
+                  <option value="Artificial Intelligence & Data Science">AI & Data Science</option>
+                  <option value="Electronics & Communication">Electronics & Communication</option>
+                  <option value="Electrical Engineering">Electrical Engineering</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Computer Applications (BCA/MCA)">Computer Applications (BCA/MCA)</option>
+                  <option value="Other">Other</option>
+                </select>
+                {errors.department && <p className="text-xs text-red-400 mt-1">{errors.department}</p>}
+              </div>
+            </div>
+
+            {/* Degree & Year Row */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1.5">Degree Program *</label>
+                <select
+                  value={formData.degree}
+                  onChange={(e) => setFormData({ ...formData, degree: e.target.value })}
+                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.degree ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                >
+                  <option value="">Select degree</option>
+                  <option value="B.Tech/B.E.">B.Tech / B.E.</option>
+                  <option value="BCA">BCA</option>
+                  <option value="MCA">MCA</option>
+                  <option value="M.Tech">M.Tech</option>
+                  <option value="B.Sc IT">B.Sc IT</option>
+                  <option value="M.Sc IT">M.Sc IT</option>
+                </select>
+                {errors.degree && <p className="text-xs text-red-400 mt-1">{errors.degree}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1.5">Year of Study *</label>
                 <select
                   value={formData.year}
                   onChange={(e) => setFormData({ ...formData, year: e.target.value })}
@@ -795,43 +973,56 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               </div>
             </div>
 
-            {/* Degree Type */}
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1.5">Degree Program</label>
-              <select
-                value={formData.degree}
-                onChange={(e) => setFormData({ ...formData, degree: e.target.value })}
-                className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.degree ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
-              >
-                <option value="">Select degree</option>
-                <option value="B.Tech/B.E.">B.Tech / B.E.</option>
-                <option value="BCA">BCA</option>
-                <option value="MCA">MCA</option>
-                <option value="M.Tech">M.Tech</option>
-                <option value="B.Sc IT">B.Sc IT</option>
-                <option value="M.Sc IT">M.Sc IT</option>
-              </select>
-              {errors.degree && <p className="text-xs text-red-400 mt-1">{errors.degree}</p>}
-            </div>
-
-            {/* Requirement */}
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                <FileText className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                Project Requirement *
-              </label>
-              <select
-                value={formData.requirement}
-                onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
-                className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.requirement ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
-              >
-                <option value="">Select requirement type</option>
-                <option value="Major Capstone">Major Capstone Project</option>
-                <option value="Mini Project">Mini Project</option>
-                <option value="Viva/Defense Prep">Viva / Defense Preparation</option>
-                <option value="Bug-Fixing">Bug-Fixing / Debugging</option>
-              </select>
-              {errors.requirement && <p className="text-xs text-red-400 mt-1">{errors.requirement}</p>}
+            {/* Requirement & Project Field Row */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                  <FileText className="w-4 h-4 inline mr-1.5 text-slate-500" />
+                  Project Requirement *
+                </label>
+                <select
+                  value={formData.requirement}
+                  onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
+                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.requirement ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                >
+                  <option value="">Select requirement</option>
+                  <option value="Major Project">Major / Final Year Project</option>
+                  <option value="Mini Project">Mini Project</option>
+                  <option value="Internship Project">Internship Project</option>
+                  <option value="Research Project">Research Project</option>
+                  <option value="Hackathon">Hackathon</option>
+                  <option value="Project Debugging">Project Debugging</option>
+                  <option value="Project Deployment">Project Deployment</option>
+                  <option value="Viva Preparation">Viva / Defense Preparation</option>
+                  <option value="Resume Project">Resume Project</option>
+                  <option value="Just Exploring">Just Exploring</option>
+                </select>
+                {errors.requirement && <p className="text-xs text-red-400 mt-1">{errors.requirement}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                  <Rocket className="w-4 h-4 inline mr-1.5 text-slate-500" />
+                  Project Field *
+                </label>
+                <select
+                  value={formData.projectField}
+                  onChange={(e) => setFormData({ ...formData, projectField: e.target.value })}
+                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.projectField ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                >
+                  <option value="">Select project field</option>
+                  <option value="Software Development">Software Development</option>
+                  <option value="AI / ML">AI / Machine Learning</option>
+                  <option value="Mobile App">Mobile Application</option>
+                  <option value="Web Application">Web Application</option>
+                  <option value="Cloud Deployment">Cloud Deployment</option>
+                  <option value="Client Requirement">Client Requirement / Custom</option>
+                  <option value="Data Engineering">Data Engineering / Big Data</option>
+                  <option value="IoT">IoT / Embedded</option>
+                  <option value="Cybersecurity">Cybersecurity</option>
+                  <option value="Not Sure">Not Sure — Need Guidance</option>
+                </select>
+                {errors.projectField && <p className="text-xs text-red-400 mt-1">{errors.projectField}</p>}
+              </div>
             </div>
 
             {/* Technologies Checkboxes */}
@@ -906,9 +1097,11 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                 >
                   <option value="">Select budget range</option>
                   <option value="Below ₹5,000">Below ₹5,000</option>
-                  <option value="₹5,000–₹10,000">₹5,000 – ₹10,000</option>
-                  <option value="₹10,000–₹20,000">₹10,000 – ₹20,000</option>
-                  <option value="Custom Enterprise/Research">Custom / Enterprise / Research</option>
+                  <option value="₹5,000 – ₹10,000">₹5,000 – ₹10,000</option>
+                  <option value="₹10,000 – ₹20,000">₹10,000 – ₹20,000</option>
+                  <option value="₹20,000 – ₹30,000">₹20,000 – ₹30,000</option>
+                  <option value="₹30,000+">₹30,000+</option>
+                  <option value="Not Decided">Not Decided</option>
                 </select>
                 {errors.budget && <p className="text-xs text-red-400 mt-1">{errors.budget}</p>}
               </div>
@@ -969,8 +1162,8 @@ function Footer() {
               </span>
             </div>
             <p className="text-sm text-slate-400 max-w-md mb-4">
-              Build It. Understand It. Deploy It. Defend It. — The engineering mentorship lab that ensures 
-              you own every line of code in your capstone project.
+              Build It. Understand It. Deploy It. Defend It. — Legitimate project mentoring for Software, AI/ML, 
+              Mobile Apps, Web Platforms, and Cloud systems. We build WITH you — not for you.
             </p>
             <div className="flex items-center gap-4">
               <a href="#" className="text-slate-500 hover:text-electric transition-colors">
@@ -1043,6 +1236,7 @@ export default function App() {
     <div className="min-h-screen bg-[#0B0F17] text-slate-200">
       <Navbar onOpenModal={() => setIsModalOpen(true)} />
       <Hero onOpenModal={() => setIsModalOpen(true)} />
+      <WhatWeBuild onOpenModal={() => setIsModalOpen(true)} />
       <Process />
       <Domains />
       <TechStacks />
