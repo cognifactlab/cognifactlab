@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import {
   FlaskConical, Terminal, Menu, X, ArrowRight, CheckCircle2,
   Brain, Eye, Database, Globe, ChevronDown, Shield, Zap,
