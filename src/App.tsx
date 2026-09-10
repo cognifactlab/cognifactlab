@@ -106,33 +106,57 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
 function Hero({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section className="relative min-h-screen flex items-center pt-20 grid-bg overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
+      {/* 3D Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* 3D Grid Floor */}
+        <div className="absolute bottom-0 left-0 right-0 h-96 grid-floor opacity-40" />
+        
+        {/* 3D Floating Spheres */}
+        <div className="absolute top-20 right-[15%] w-72 h-72 sphere-3d float-3d opacity-60" />
+        <div className="absolute bottom-32 left-[10%] w-56 h-56 sphere-3d-emerald float-3d-slow opacity-50" />
+        <div className="absolute top-1/2 right-[5%] w-32 h-32 sphere-3d float-3d-fast opacity-40" />
+        
+        {/* 3D Rotating Rings */}
+        <div className="absolute top-1/3 right-[20%] ring-3d opacity-40" />
+        <div className="absolute bottom-1/4 left-[25%] w-24 h-24 border-2 border-emerald/30 rounded-full spin-3d opacity-30" />
+        
+        {/* 3D Geometric Shapes */}
+        <div className="absolute top-40 left-[5%] w-16 h-16 border border-electric/30 rotate-45 spin-3d opacity-40" />
+        <div className="absolute bottom-40 right-[10%] w-20 h-20 border border-emerald/30 rounded-lg spin-3d opacity-30" style={{ animationDuration: '25s' }} />
+        
+        {/* Floating Particles */}
+        <div className="absolute top-[20%] left-[40%] w-2 h-2 bg-electric rounded-full float-3d-fast opacity-60" />
+        <div className="absolute top-[60%] right-[30%] w-1.5 h-1.5 bg-emerald rounded-full float-3d opacity-70" />
+        <div className="absolute top-[40%] left-[60%] w-1 h-1 bg-purple-400 rounded-full float-3d-slow opacity-50" />
+        <div className="absolute bottom-[30%] left-[50%] w-2 h-2 bg-yellow-400 rounded-full float-3d-fast opacity-40" />
+        
+        {/* 3D Depth Glow */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/3 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
         <div className="max-w-4xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm mb-8 animate-fade-in-up">
+          {/* Badge with 3D Effect */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm mb-8 animate-fade-in-up glass-3d">
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
-              <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '1s' }} />
+              <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-lg shadow-electric/50" />
+              <span className="w-2 h-2 rounded-full bg-emerald animate-pulse shadow-lg shadow-emerald/50" style={{ animationDelay: '0.5s' }} />
+              <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse shadow-lg shadow-yellow-400/50" style={{ animationDelay: '1s' }} />
             </div>
             <span className="text-xs sm:text-sm text-slate-300 font-medium">
               Legitimate Project Mentoring • No Black-Box Code • Viva-Ready
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Headline with 3D Text Effect */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             Build Real Systems.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric to-electric-light">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric to-electric-light inline-block hover:scale-105 transition-transform duration-500">
               Master Your Architecture.
             </span>{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald to-emerald-light">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald to-emerald-light inline-block hover:scale-105 transition-transform duration-500">
               Clear Your Viva.
             </span>
           </h1>
@@ -144,32 +168,32 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
             so you understand every line, ace your viva, and walk away with real engineering skills.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          {/* CTAs with 3D Effects */}
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up perspective-1000" style={{ animationDelay: '0.3s' }}>
             <button
               onClick={onOpenModal}
-              className="px-8 py-4 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-electric/20 flex items-center justify-center gap-2 pulse-glow"
+              className="px-8 py-4 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-electric/20 flex items-center justify-center gap-2 pulse-glow hover-lift-3d"
             >
               <Calendar className="w-5 h-5" />
               Schedule Technical Intake
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <a
               href="#stacks"
-              className="px-8 py-4 border border-slate-700 hover:border-electric text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 hover:bg-slate-800/50"
+              className="px-8 py-4 border border-slate-700 hover:border-electric text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-800/50 hover-lift-3d glass-3d"
             >
               <Layers className="w-5 h-5" />
               Explore Supported Stacks
             </a>
           </div>
 
-          {/* Terminal Preview */}
-          <div className="mt-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <div className="bg-slate-900/80 border border-slate-700/50 rounded-xl overflow-hidden backdrop-blur-sm max-w-2xl">
+          {/* Terminal Preview with 3D Effect */}
+          <div className="mt-16 animate-fade-in-up perspective-1000" style={{ animationDelay: '0.4s' }}>
+            <div className="bg-slate-900/80 border border-slate-700/50 rounded-xl overflow-hidden backdrop-blur-sm max-w-2xl glass-3d hover-lift-3d transition-all duration-500">
               <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-700/50">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-lg shadow-red-500/30" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-lg shadow-yellow-500/30" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-lg shadow-green-500/30" />
                 <span className="ml-2 text-xs text-slate-500 font-mono">cognifactlab — project-intake</span>
               </div>
               <div className="p-4 font-mono text-sm">
@@ -262,16 +286,19 @@ function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000">
           {projects.map((project) => (
             <div
               key={project.title}
-              className="group relative p-6 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-300 hover:bg-slate-900/50 hover:-translate-y-1"
+              className="group relative p-6 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-500 hover:bg-slate-900/50 card-3d glass-3d"
             >
-              {/* Icon */}
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+              {/* 3D Floating Icon */}
+              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-electric/20`}>
                 <project.icon className="w-7 h-7 text-white" />
               </div>
+              
+              {/* 3D Glow Effect on Hover */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-electric/0 via-transparent to-emerald/0 group-hover:from-electric/5 group-hover:to-emerald/5 transition-all duration-500 pointer-events-none" />
 
               {/* Content */}
               <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
@@ -363,22 +390,25 @@ function Process() {
           </p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Steps Grid with 3D Effects */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 perspective-2000">
           {steps.map((step, idx) => (
             <div
               key={step.number}
-              className="group relative p-6 lg:p-8 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-300 hover:bg-slate-900/50"
+              className="group relative p-6 lg:p-8 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-500 hover:bg-slate-900/50 card-3d glass-3d"
             >
-              {/* Step Number */}
-              <div className="absolute top-6 right-6 text-5xl font-bold text-slate-800/50 font-mono group-hover:text-slate-700/50 transition-colors">
+              {/* 3D Step Number */}
+              <div className="absolute top-6 right-6 text-6xl font-bold text-slate-800/30 font-mono group-hover:text-electric/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
                 {step.number}
               </div>
 
-              {/* Icon */}
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${step.color === 'electric' ? 'bg-electric/10 text-electric' : 'bg-emerald/10 text-emerald'}`}>
-                <step.icon className="w-6 h-6" />
+              {/* 3D Icon with Depth */}
+              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${step.color === 'electric' ? 'bg-electric/10 text-electric' : 'bg-emerald/10 text-emerald'} group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg ${step.color === 'electric' ? 'shadow-electric/20' : 'shadow-emerald/20'}`}>
+                <step.icon className="w-7 h-7" />
               </div>
+              
+              {/* 3D Glow Effect */}
+              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${step.color === 'electric' ? 'bg-gradient-to-br from-electric/5 to-transparent' : 'bg-gradient-to-br from-emerald/5 to-transparent'}`} />
 
               {/* Content */}
               <h3 className="text-xl font-bold text-white mb-2 pr-12">{step.title}</h3>
@@ -465,17 +495,17 @@ function Domains() {
           </p>
         </div>
 
-        {/* Domains Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Domains Grid with 3D Effects */}
+        <div className="grid md:grid-cols-2 gap-6 perspective-1000">
           {domains.map((domain) => (
             <div
               key={domain.title}
-              className={`group relative p-6 lg:p-8 rounded-2xl border ${domain.borderColor} ${domain.bgColor} backdrop-blur-sm hover:scale-[1.02] transition-all duration-300`}
+              className={`group relative p-6 lg:p-8 rounded-2xl border ${domain.borderColor} ${domain.bgColor} backdrop-blur-sm hover:scale-[1.02] transition-all duration-500 card-3d glass-3d`}
             >
-              {/* Icon & Title */}
+              {/* 3D Icon with Depth */}
               <div className="flex items-center gap-4 mb-4">
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${domain.color} flex items-center justify-center`}>
-                  <domain.icon className="w-6 h-6 text-white" />
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${domain.color} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                  <domain.icon className="w-7 h-7 text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white">{domain.title}</h3>
@@ -552,29 +582,31 @@ function TrustCards() {
           </p>
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        {/* Stats Row with 3D Effects */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12 perspective-1000">
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="text-center p-6 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm"
+              className="text-center p-6 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm card-3d glass-3d hover-lift-3d transition-all duration-500"
             >
-              <stat.icon className="w-8 h-8 text-electric mx-auto mb-3" />
+              <div className="inline-block group-hover:scale-110 transition-transform duration-500">
+                <stat.icon className="w-8 h-8 text-electric mx-auto mb-3" />
+              </div>
               <div className="text-2xl lg:text-3xl font-bold text-white mb-1">{stat.value}</div>
               <div className="text-xs text-slate-400">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Project Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        {/* Project Cards with 3D Effects */}
+        <div className="grid md:grid-cols-3 gap-6 perspective-1000">
           {projects.map((project) => (
             <div
               key={project.title}
-              className="group p-6 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-electric/30 transition-all duration-300"
+              className="group p-6 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-electric/30 transition-all duration-500 card-3d glass-3d hover-lift-3d"
             >
-              {/* Metric Badge */}
-              <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald/10 border border-emerald/20 mb-4">
+              {/* 3D Metric Badge */}
+              <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald/10 border border-emerald/20 mb-4 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-emerald/20 transition-all duration-500">
                 <Zap className="w-3 h-3 text-emerald" />
                 <span className="text-xs font-medium text-emerald">{project.metric}</span>
               </div>
@@ -681,14 +713,16 @@ function TechStacks() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 perspective-1000">
           {stacks.map((stack) => (
             <div
               key={stack.category}
-              className="group p-5 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-300 hover:bg-slate-900/50"
+              className="group p-5 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-500 hover:bg-slate-900/50 card-3d glass-3d hover-lift-3d"
             >
               <div className="flex items-center gap-2 mb-4">
-                <stack.icon className={`w-4 h-4 ${stack.color}`} />
+                <div className={`p-2 rounded-lg ${stack.color === 'text-electric' ? 'bg-electric/10' : 'bg-emerald/10'} group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}>
+                  <stack.icon className={`w-4 h-4 ${stack.color}`} />
+                </div>
                 <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
                   {stack.category}
                 </h3>
@@ -697,7 +731,7 @@ function TechStacks() {
                 {stack.items.map((item) => (
                   <span
                     key={item}
-                    className="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-800/80 text-slate-300 border border-slate-700/50 hover:border-electric/30 hover:text-electric transition-colors cursor-default"
+                    className="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-800/80 text-slate-300 border border-slate-700/50 hover:border-electric/30 hover:text-electric hover:scale-105 transition-all duration-300 cursor-default"
                   >
                     {item}
                   </span>
@@ -750,14 +784,14 @@ function WhyChooseUs() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-slate-800/50 overflow-hidden">
-          {/* Header */}
-          <div className="grid grid-cols-3 bg-slate-900/80 border-b border-slate-800/50">
+        <div className="rounded-2xl border border-slate-800/50 overflow-hidden glass-3d">
+          {/* Header with 3D Effect */}
+          <div className="grid grid-cols-3 bg-slate-900/80 border-b border-slate-800/50 backdrop-blur-xl">
             <div className="p-4 text-sm font-semibold text-slate-400">Feature</div>
-            <div className="p-4 text-sm font-semibold text-electric text-center border-l border-slate-800/50">
+            <div className="p-4 text-sm font-semibold text-electric text-center border-l border-slate-800/50 bg-electric/5">
               CogniFactlab
             </div>
-            <div className="p-4 text-sm font-semibold text-red-400 text-center border-l border-slate-800/50">
+            <div className="p-4 text-sm font-semibold text-red-400 text-center border-l border-slate-800/50 bg-red-500/5">
               Online Project Sellers
             </div>
           </div>
@@ -799,12 +833,18 @@ function UrgencyBanner({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section className="py-12 relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative p-6 sm:p-8 rounded-2xl border border-yellow-500/20 bg-gradient-to-r from-yellow-500/5 via-orange-500/5 to-red-500/5 overflow-hidden">
+        <div className="relative p-6 sm:p-8 rounded-2xl border border-yellow-500/20 bg-gradient-to-r from-yellow-500/5 via-orange-500/5 to-red-500/5 overflow-hidden glass-3d hover-lift-3d">
+          {/* 3D Floating Elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+          
+          {/* 3D Geometric Shapes */}
+          <div className="absolute top-4 right-8 w-8 h-8 border border-yellow-400/30 rotate-45 spin-3d opacity-40" />
+          <div className="absolute bottom-4 right-20 w-4 h-4 bg-yellow-400/40 rounded-full float-3d-fast" />
           
           <div className="relative flex flex-col sm:flex-row items-center gap-6">
             <div className="flex-shrink-0">
-              <div className="w-14 h-14 rounded-xl bg-yellow-500/10 flex items-center justify-center">
+              <div className="w-14 h-14 rounded-xl bg-yellow-500/10 flex items-center justify-center float-3d">
                 <AlertCircle className="w-7 h-7 text-yellow-400" />
               </div>
             </div>
@@ -840,9 +880,9 @@ function FloatingWhatsApp() {
       href="https://wa.me/918828730908?text=Hi%2C%20I%20am%20interested%20in%20CogniFactlab%20mentorship"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-green-500 hover:bg-green-400 text-white rounded-full shadow-lg shadow-green-500/30 transition-all duration-200 hover:scale-105 group"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-green-500 hover:bg-green-400 text-white rounded-full shadow-lg shadow-green-500/30 transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-green-500/50 group"
     >
-      <MessageSquare className="w-5 h-5" />
+      <MessageSquare className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
       <span className="hidden sm:inline text-sm font-semibold">Chat on WhatsApp</span>
     </a>
   );
@@ -900,23 +940,23 @@ function FAQ() {
           </h2>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-3 perspective-1000">
           {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm overflow-hidden transition-all duration-200"
+              className="rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm overflow-hidden transition-all duration-500 hover-lift-3d glass-3d"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-5 text-left hover:bg-slate-800/20 transition-colors"
+                className="w-full flex items-center justify-between p-5 text-left hover:bg-slate-800/20 transition-all duration-300"
               >
                 <span className="text-sm sm:text-base font-medium text-white pr-4">{faq.question}</span>
                 <ChevronDown
-                  className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${openIndex === idx ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-all duration-500 ${openIndex === idx ? 'rotate-180 text-electric' : ''}`}
                 />
               </button>
               {openIndex === idx && (
-                <div className="px-5 pb-5">
+                <div className="px-5 pb-5 animate-fade-in-up">
                   <p className="text-sm sm:text-base text-slate-400 leading-relaxed">{faq.answer}</p>
                 </div>
               )}
@@ -1388,8 +1428,15 @@ WhatsApp Opt-in: ${formData.whatsAppOptIn ? 'Yes' : 'No'}`,
 // ==================== FOOTER ====================
 function Footer() {
   return (
-    <footer className="border-t border-slate-800/50 bg-slate-900/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <footer className="border-t border-slate-800/50 bg-slate-900/30 relative overflow-hidden">
+      {/* 3D Background Elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute top-10 left-10 w-20 h-20 sphere-3d float-3d-slow opacity-40" />
+        <div className="absolute bottom-10 right-10 w-16 h-16 sphere-3d-emerald float-3d opacity-30" />
+        <div className="absolute top-1/2 right-1/4 w-12 h-12 border border-electric/20 rotate-45 spin-3d" />
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
@@ -1474,6 +1521,20 @@ export default function App() {
     <div className="min-h-screen bg-[#0B0F17] text-slate-200">
       <Navbar onOpenModal={() => setIsModalOpen(true)} />
       <Hero onOpenModal={() => setIsModalOpen(true)} />
+      
+      {/* 3D Section Divider */}
+      <div className="relative h-32 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="flex gap-8 items-center">
+            <div className="w-3 h-3 bg-electric rounded-full float-3d-fast opacity-60" />
+            <div className="w-2 h-2 bg-emerald rounded-full float-3d opacity-40" />
+            <div className="w-4 h-4 border border-electric/30 rotate-45 spin-3d opacity-50" />
+            <div className="w-2 h-2 bg-purple-400 rounded-full float-3d-slow opacity-50" />
+            <div className="w-3 h-3 bg-yellow-400 rounded-full float-3d-fast opacity-40" />
+          </div>
+        </div>
+      </div>
+      
       <UrgencyBanner onOpenModal={() => setIsModalOpen(true)} />
       <WhatWeBuild onOpenModal={() => setIsModalOpen(true)} />
       <Process />
