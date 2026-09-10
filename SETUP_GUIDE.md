@@ -9,7 +9,7 @@
 ### Step 2: Add Email Service
 1. Go to **Email Services** → **Add New Service**
 2. Select **Gmail**
-3. Connect your Gmail account (the one where you want to receive submissions)
+3. Connect your Gmail account: **cogniFactlab@gmail.com**
 4. Name it: `service_cognifactlab`
 5. Copy the **Service ID**
 
@@ -89,11 +89,13 @@ Your existing Apps Script setup will continue to work. The form now sends to BOT
 
 ## 💬 WhatsApp Floating Button
 
-Update the WhatsApp number in `src/App.tsx`:
+WhatsApp number is already configured: **+91 88287 30908** (cogniFactlab@gmail.com)
+
+To update in the future, modify `src/App.tsx`:
 ```typescript
-href="https://wa.me/919999999999?text=..."
+href="https://wa.me/918828730908?text=..."
 ```
-Replace `919999999999` with your actual WhatsApp number (with country code, no + sign).
+Format: Country code (91 for India) + number, no + sign or spaces.
 
 ---
 

@@ -24,7 +24,6 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
     { label: 'What We Build', href: '#we-build' },
     { label: 'Process', href: '#process' },
     { label: 'Tech Stacks', href: '#stacks' },
-    { label: 'Pricing', href: '#pricing' },
     { label: 'Reviews', href: '#reviews' },
     { label: 'FAQ', href: '#faq' },
   ];
@@ -651,12 +650,6 @@ function TechStacks() {
       items: ['AWS (EC2, S3, Lambda)', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'CI/CD', 'Nginx', 'Vercel', 'Render', 'Netlify']
     },
     {
-      category: 'IoT & Embedded',
-      icon: Cpu,
-      color: 'text-electric',
-      items: ['Arduino', 'Raspberry Pi', 'ESP32/ESP8266', 'MQTT Protocol', 'Sensor Integration', 'IoT Dashboards', 'Edge Computing', 'LoRaWAN', 'Node-RED']
-    },
-    {
       category: 'Cybersecurity',
       icon: Shield,
       color: 'text-emerald',
@@ -725,135 +718,7 @@ function TechStacks() {
   );
 }
 
-// ==================== PRICING ====================
-function Pricing({ onOpenModal }: { onOpenModal: () => void }) {
-  const plans = [
-    {
-      name: 'Starter',
-      subtitle: 'Mini Project / Bug Fix',
-      price: '₹3,000',
-      priceNote: 'Starting from',
-      features: [
-        '1-week mentorship',
-        'Mini project or bug fixing',
-        'Code walkthrough session',
-        'Basic viva preparation',
-        'Email support',
-      ],
-      popular: false,
-      color: 'border-slate-700/50',
-    },
-    {
-      name: 'Professional',
-      subtitle: 'Major Capstone Project',
-      price: '₹8,000',
-      priceNote: 'Starting from',
-      features: [
-        '2–4 week mentorship',
-        'Full capstone project build',
-        'Live paired-coding sessions',
-        'Cloud deployment (AWS/Render)',
-        'Architecture diagrams & PPT',
-        'Mock viva sessions (2x)',
-        'Post-submission support (7 days)',
-        'Priority WhatsApp support',
-      ],
-      popular: true,
-      color: 'border-electric',
-    },
-    {
-      name: 'Enterprise',
-      subtitle: 'Research / Custom / Complex',
-      price: '₹20,000+',
-      priceNote: 'Custom pricing',
-      features: [
-        '1–3 month mentorship',
-        'Research-grade architecture',
-        'Multi-module system design',
-        'CI/CD & production deployment',
-        'Unlimited viva prep sessions',
-        'Dedicated mentor assignment',
-        'Post-submission support (30 days)',
-        'Resume & portfolio integration',
-        'Career guidance session',
-      ],
-      popular: false,
-      color: 'border-slate-700/50',
-    },
-  ];
 
-  return (
-    <section id="pricing" className="py-24 lg:py-32 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
-            <DollarSign className="w-3.5 h-3.5 text-emerald" />
-            <span className="text-xs text-slate-400 font-mono">PRICING</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Transparent <span className="text-emerald">Pricing</span>
-          </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            No hidden fees. Pay for mentorship hours, not pre-built code. 
-            Every plan includes complete code ownership and viva preparation.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`relative p-6 lg:p-8 rounded-2xl border ${plan.color} bg-slate-900/30 backdrop-blur-sm ${plan.popular ? 'glow-blue scale-[1.02]' : ''} transition-all duration-300`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-electric text-white text-xs font-bold rounded-full">
-                  MOST POPULAR
-                </div>
-              )}
-
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-white">{plan.name}</h3>
-                <p className="text-sm text-slate-400">{plan.subtitle}</p>
-              </div>
-
-              <div className="mb-6">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                </div>
-                <p className="text-xs text-slate-500 mt-1">{plan.priceNote}</p>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2 text-sm text-slate-300">
-                    <CheckCircle2 className="w-4 h-4 text-emerald flex-shrink-0 mt-0.5" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                onClick={onOpenModal}
-                className={`w-full py-3 rounded-xl font-semibold transition-all duration-200 ${
-                  plan.popular
-                    ? 'bg-electric hover:bg-electric-light text-white'
-                    : 'border border-slate-700 hover:border-electric text-slate-300 hover:text-white'
-                }`}
-              >
-                Get Started
-              </button>
-            </div>
-          ))}
-        </div>
-
-        <p className="text-center text-sm text-slate-500 mt-8">
-          * Final pricing depends on project complexity, timeline, and technologies involved. 
-          Schedule a free consultation for exact quotes.
-        </p>
-      </div>
-    </section>
-  );
-}
 
 // ==================== WHY CHOOSE US ====================
 function WhyChooseUs() {
@@ -972,7 +837,7 @@ function UrgencyBanner({ onOpenModal }: { onOpenModal: () => void }) {
 function FloatingWhatsApp() {
   return (
     <a
-      href="https://wa.me/919999999999?text=Hi%2C%20I%20am%20interested%20in%20CogniFactlab%20mentorship"
+      href="https://wa.me/918828730908?text=Hi%2C%20I%20am%20interested%20in%20CogniFactlab%20mentorship"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-green-500 hover:bg-green-400 text-white rounded-full shadow-lg shadow-green-500/30 transition-all duration-200 hover:scale-105 group"
@@ -1120,7 +985,8 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         'template_project_intake', // Your EmailJS template ID
         {
           from_name: formData.fullName,
-          from_email: 'noreply@cognifactlab.com',
+          reply_to: formData.whatsAppNumber,
+          to_email: 'cogniFactlab@gmail.com',
           whatsapp_number: formData.whatsAppNumber,
           college: formData.college,
           department: formData.department,
@@ -1570,11 +1436,11 @@ function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-slate-400">
                 <MessageSquare className="w-4 h-4 text-emerald" />
-                WhatsApp: +91-XXXXX-XXXXX
+                WhatsApp: +91 88287 30908
               </li>
               <li className="flex items-center gap-2 text-sm text-slate-400">
                 <Send className="w-4 h-4 text-electric" />
-                hello@cognifactlab.com
+                cogniFactlab@gmail.com
               </li>
               <li className="flex items-center gap-2 text-sm text-slate-400">
                 <Clock className="w-4 h-4 text-slate-500" />
@@ -1615,7 +1481,6 @@ export default function App() {
       <TechStacks />
       <TrustCards />
       <WhyChooseUs />
-      <Pricing onOpenModal={() => setIsModalOpen(true)} />
       <FAQ />
       <Footer />
       <FloatingWhatsApp />
