@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
 import {
   FlaskConical, Terminal, Menu, X, ArrowRight, CheckCircle2,
   Brain, Eye, Database, Globe, ChevronDown, Shield, Zap,
@@ -1019,15 +1018,23 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     setIsSubmitting(true);
 
     try {
-      // Send email notification via EmailJS
-      await emailjs.send(
-        'service_cognifactlab', // Your EmailJS service ID
-        'template_project_intake', // Your EmailJS template ID
-        {
-          from_name: formData.fullName,
-          reply_to: formData.whatsAppNumber,
-          to_email: 'cogniFactlab@gmail.com',
-          whatsapp_number: formData.whatsAppNumber,
+      // Send directly to email via Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // Get from web3forms.com
+          subject: `🚀 New Project Intake: ${formData.fullName} - ${formData.projectField}`,
+          from_name: 'CogniFactlab Website',
+          to: 'cogniFactlab@gmail.com',
+          
+          // Form data
+          name: formData.fullName,
+          email: 'noreply@cognifactlab.com',
+          whatsapp: formData.whatsAppNumber,
           college: formData.college,
           department: formData.department,
           degree: formData.degree,
@@ -1035,57 +1042,54 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           requirement: formData.requirement,
           project_field: formData.projectField,
           technologies: formData.technologies.join(', '),
-          project_idea: formData.projectIdea,
           timeline: formData.timeline,
           budget: formData.budget,
           whatsapp_opt_in: formData.whatsAppOptIn ? 'Yes' : 'No',
-          message: `New Project Intake Submission
-
-Name: ${formData.fullName}
-WhatsApp: ${formData.whatsAppNumber}
-College: ${formData.college}
-Department: ${formData.department}
-Degree: ${formData.degree}
-Year: ${formData.year}
-Requirement: ${formData.requirement}
-Project Field: ${formData.projectField}
-Technologies: ${formData.technologies.join(', ')}
-Timeline: ${formData.timeline}
-Budget: ${formData.budget}
-
-Project Idea:
-${formData.projectIdea}
-
-WhatsApp Opt-in: ${formData.whatsAppOptIn ? 'Yes' : 'No'}`,
-        },
-        'YOUR_PUBLIC_KEY' // Your EmailJS public key
-      );
-
-      // Also send to CRM endpoint (Google Apps Script)
-      await fetch('https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          whatsAppNumber: formData.whatsAppNumber,
-          college: formData.college,
-          department: formData.department,
-          degree: formData.degree,
-          year: formData.year,
-          requirement: formData.requirement,
-          projectField: formData.projectField,
-          technology: formData.technologies,
-          projectIdea: formData.projectIdea,
-          timeline: formData.timeline,
-          budget: formData.budget,
-          whatsAppOptIn: formData.whatsAppOptIn,
-          helpRequired: 'Mentorship & Viva Prep',
-        }),
+          message: formData.projectIdea,
+          
+          // Additional metadata
+          help_required: 'Mentorship & Viva Prep',
+          submission_date: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
       });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        console.log('Form submitted successfully');
+      } else {
+        console.error('Form submission failed:', result);
+      }
+
+      // Also send to CRM endpoint (Google Apps Script) - optional
+      try {
+        await fetch('https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: formData.fullName,
+            whatsAppNumber: formData.whatsAppNumber,
+            college: formData.college,
+            department: formData.department,
+            degree: formData.degree,
+            year: formData.year,
+            requirement: formData.requirement,
+            projectField: formData.projectField,
+            technology: formData.technologies,
+            projectIdea: formData.projectIdea,
+            timeline: formData.timeline,
+            budget: formData.budget,
+            whatsAppOptIn: formData.whatsAppOptIn,
+            helpRequired: 'Mentorship & Viva Prep',
+          }),
+        });
+      } catch (crmError) {
+        console.log('CRM submission skipped (optional)');
+      }
+
     } catch (error) {
       console.error('Submission error:', error);
-      // Continue even if email fails - CRM might still work
     }
 
     setIsSubmitting(false);
