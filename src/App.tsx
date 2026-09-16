@@ -1026,7 +1026,7 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // Get from web3forms.com
+          access_key: '0e0b8193-e1ab-4cb3-82e4-1cc67c85fe31',
           subject: `🚀 New Project Intake: ${formData.fullName} - ${formData.projectField}`,
           from_name: 'CogniFactlab Website',
           to: 'cogniFactlab@gmail.com',
