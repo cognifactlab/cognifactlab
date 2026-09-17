@@ -1033,7 +1033,7 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           
           // Form data
           name: formData.fullName,
-          email: 'noreply@cognifactlab.com',
+          email: 'noreply@cognifactlabs.in',
           whatsapp: formData.whatsAppNumber,
           college: formData.college,
           department: formData.department,
