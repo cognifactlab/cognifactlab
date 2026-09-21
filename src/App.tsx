@@ -644,7 +644,6 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     technologies: [] as string[],
     projectIdea: '',
     timeline: '',
-    budget: '',
     whatsAppOptIn: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -668,7 +667,6 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     if (formData.technologies.length === 0) newErrors.technologies = 'Select at least one technology';
     if (!formData.projectIdea.trim()) newErrors.projectIdea = 'Please describe your project concept';
     if (!formData.timeline) newErrors.timeline = 'Please select your timeline';
-    if (!formData.budget) newErrors.budget = 'Please select your budget range';
     if (!formData.whatsAppOptIn) newErrors.whatsAppOptIn = 'WhatsApp consent is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -700,7 +698,6 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           project_field: formData.projectField,
           technologies: formData.technologies.join(', '),
           timeline: formData.timeline,
-          budget: formData.budget,
           whatsapp_opt_in: formData.whatsAppOptIn ? 'Yes' : 'No',
           message: formData.projectIdea,
           help_required: 'Mentorship & Viva Prep',
@@ -718,7 +715,7 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
       onClose();
       setFormData({
         fullName: '', whatsAppNumber: '', college: '', department: '', degree: '', year: '',
-        requirement: '', projectField: '', technologies: [], projectIdea: '', timeline: '', budget: '', whatsAppOptIn: false,
+        requirement: '', projectField: '', technologies: [], projectIdea: '', timeline: '', whatsAppOptIn: false,
       });
     }, 3000);
   };
@@ -923,37 +920,20 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               {errors.projectIdea && <p className="text-xs text-red-400 mt-1">{errors.projectIdea}</p>}
             </div>
 
-            {/* Timeline & Budget */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Target Timeline *</label>
-                <select
-                  value={formData.timeline}
-                  onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.timeline ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
-                >
-                  <option value="">Select timeline</option>
-                  <option value="Within 7 Days">Within 7 Days</option>
-                  <option value="Within 15 Days">Within 15 Days</option>
-                  <option value="1 Month+">1 Month+</option>
-                </select>
-                {errors.timeline && <p className="text-xs text-red-400 mt-1">{errors.timeline}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Estimated Budget *</label>
-                <select
-                  value={formData.budget}
-                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.budget ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
-                >
-                  <option value="">Select budget range</option>
-                  <option value="Below ₹5,000">Below ₹5,000</option>
-                  <option value="₹5,000 – ₹10,000">₹5,000 – ₹10,000</option>
-                  <option value="₹10,000 – ₹20,000">₹10,000 – ₹20,000</option>
-                  <option value="₹20,000+">₹20,000+</option>
-                </select>
-                {errors.budget && <p className="text-xs text-red-400 mt-1">{errors.budget}</p>}
-              </div>
+            {/* Timeline */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Target Timeline *</label>
+              <select
+                value={formData.timeline}
+                onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.timeline ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+              >
+                <option value="">Select timeline</option>
+                <option value="Within 7 Days">Within 7 Days</option>
+                <option value="Within 15 Days">Within 15 Days</option>
+                <option value="1 Month+">1 Month+</option>
+              </select>
+              {errors.timeline && <p className="text-xs text-red-400 mt-1">{errors.timeline}</p>}
             </div>
 
             {/* WhatsApp Consent */}
