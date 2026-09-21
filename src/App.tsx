@@ -5,7 +5,7 @@ import {
   Users, Code2, Cloud, MessageSquare, Phone, MapPin,
   GraduationCap, Calendar, DollarSign, FileText, Send,
   ExternalLink, Star, Clock, Target, Layers, Smartphone,
-  Server, Cpu, Briefcase, Rocket, Award, TrendingUp, AlertCircle
+  Server, Cpu, Briefcase, Rocket, Award, AlertCircle
 } from 'lucide-react';
 
 // ==================== NAVBAR ====================
@@ -20,26 +20,31 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
   }, []);
 
   const navLinks = [
-    { label: 'What We Build', href: '#we-build' },
+    { label: 'Services', href: '#services' },
     { label: 'Process', href: '#process' },
-    { label: 'Tech Stacks', href: '#stacks' },
+    { label: 'Tech Stack', href: '#tech' },
     { label: 'Reviews', href: '#reviews' },
     { label: 'FAQ', href: '#faq' },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0B0F17]/95 backdrop-blur-xl border-b border-slate-800/50' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0B0F17]/95 backdrop-blur-xl border-b border-slate-800/50 shadow-lg' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <a href="#" className="flex items-center gap-3 group">
             <div className="relative">
-              <FlaskConical className="w-7 h-7 text-electric group-hover:text-electric-light transition-colors" />
-              <div className="absolute -top-1 -right-1 w-2 h-2 bg-emerald rounded-full animate-pulse" />
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-electric to-emerald flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <FlaskConical className="w-5 h-5 text-white" />
+              </div>
+              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald rounded-full animate-pulse ring-2 ring-[#0B0F17]" />
             </div>
-            <span className="text-lg font-bold text-white font-mono tracking-tight">
-              Cogni<span className="text-electric">Fact</span>lab
-            </span>
+            <div>
+              <span className="text-xl font-bold text-white">
+                Cogni<span className="text-electric">Fact</span>labs
+              </span>
+              <p className="text-[10px] text-slate-500 -mt-1">Project Mentorship Lab</p>
+            </div>
           </a>
 
           {/* Desktop Nav */}
@@ -48,9 +53,10 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-slate-400 hover:text-white transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-electric after:transition-all hover:after:w-full"
+                className="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200 relative group"
               >
                 {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-electric group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -59,17 +65,18 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
           <div className="hidden lg:block">
             <button
               onClick={onOpenModal}
-              className="px-5 py-2.5 bg-electric hover:bg-electric-light text-white text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-electric/20 flex items-center gap-2"
+              className="px-6 py-2.5 bg-electric hover:bg-electric-light text-white text-sm font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-electric/30 flex items-center gap-2 btn-press"
             >
               <Terminal className="w-4 h-4" />
-              Submit Project Brief
+              Start Project
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-slate-400 hover:text-white"
+            className="lg:hidden p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800/50 transition-colors"
+            aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -77,22 +84,22 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden pb-6 border-t border-slate-800/50 mt-2 pt-4">
+          <div className="lg:hidden pb-6 border-t border-slate-800/50 mt-2 pt-4 animate-fade-in-up">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block py-3 text-slate-400 hover:text-white transition-colors"
+                className="block py-3 px-4 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-lg transition-colors"
               >
                 {link.label}
               </a>
             ))}
             <button
               onClick={() => { onOpenModal(); setIsOpen(false); }}
-              className="mt-4 w-full px-5 py-2.5 bg-electric text-white text-sm font-medium rounded-lg"
+              className="mt-4 w-full px-6 py-3 bg-electric hover:bg-electric-light text-white text-sm font-semibold rounded-lg transition-colors"
             >
-              Submit Project Brief
+              Start Project
             </button>
           </div>
         )}
@@ -105,57 +112,33 @@ function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
 function Hero({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section className="relative min-h-screen flex items-center pt-20 grid-bg overflow-hidden">
-      {/* 3D Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* 3D Grid Floor */}
-        <div className="absolute bottom-0 left-0 right-0 h-96 grid-floor opacity-40" />
-        
-        {/* 3D Floating Spheres */}
-        <div className="absolute top-20 right-[15%] w-72 h-72 sphere-3d float-3d opacity-60" />
-        <div className="absolute bottom-32 left-[10%] w-56 h-56 sphere-3d-emerald float-3d-slow opacity-50" />
-        <div className="absolute top-1/2 right-[5%] w-32 h-32 sphere-3d float-3d-fast opacity-40" />
-        
-        {/* 3D Rotating Rings */}
-        <div className="absolute top-1/3 right-[20%] ring-3d opacity-40" />
-        <div className="absolute bottom-1/4 left-[25%] w-24 h-24 border-2 border-emerald/30 rounded-full spin-3d opacity-30" />
-        
-        {/* 3D Geometric Shapes */}
-        <div className="absolute top-40 left-[5%] w-16 h-16 border border-electric/30 rotate-45 spin-3d opacity-40" />
-        <div className="absolute bottom-40 right-[10%] w-20 h-20 border border-emerald/30 rounded-lg spin-3d opacity-30" style={{ animationDuration: '25s' }} />
-        
-        {/* Floating Particles */}
-        <div className="absolute top-[20%] left-[40%] w-2 h-2 bg-electric rounded-full float-3d-fast opacity-60" />
-        <div className="absolute top-[60%] right-[30%] w-1.5 h-1.5 bg-emerald rounded-full float-3d opacity-70" />
-        <div className="absolute top-[40%] left-[60%] w-1 h-1 bg-purple-400 rounded-full float-3d-slow opacity-50" />
-        <div className="absolute bottom-[30%] left-[50%] w-2 h-2 bg-yellow-400 rounded-full float-3d-fast opacity-40" />
-        
-        {/* 3D Depth Glow */}
+      {/* Background Effects */}
+      <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/3 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
         <div className="max-w-4xl">
-          {/* Badge with 3D Effect */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm mb-8 animate-fade-in-up glass-3d">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm mb-8 animate-fade-in-up">
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-lg shadow-electric/50" />
-              <span className="w-2 h-2 rounded-full bg-emerald animate-pulse shadow-lg shadow-emerald/50" style={{ animationDelay: '0.5s' }} />
-              <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse shadow-lg shadow-yellow-400/50" style={{ animationDelay: '1s' }} />
+              <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" style={{ animationDelay: '0.5s' }} />
+              <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
             <span className="text-xs sm:text-sm text-slate-300 font-medium">
               Legitimate Project Mentoring • No Black-Box Code • Viva-Ready
             </span>
           </div>
 
-          {/* Headline with 3D Text Effect */}
+          {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             Build Real Systems.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric to-electric-light inline-block hover:scale-105 transition-transform duration-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric to-electric-light">
               Master Your Architecture.
             </span>{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald to-emerald-light inline-block hover:scale-105 transition-transform duration-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald to-emerald-light">
               Clear Your Viva.
             </span>
           </h1>
@@ -167,41 +150,40 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
             so you understand every line, ace your viva, and walk away with real engineering skills.
           </p>
 
-          {/* CTAs with 3D Effects */}
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up perspective-1000" style={{ animationDelay: '0.3s' }}>
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
             <button
               onClick={onOpenModal}
-              className="px-8 py-4 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-electric/20 flex items-center justify-center gap-2 pulse-glow hover-lift-3d"
+              className="px-8 py-4 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-electric/20 flex items-center justify-center gap-2 pulse-glow btn-press"
             >
               <Calendar className="w-5 h-5" />
               Schedule Technical Intake
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5" />
             </button>
             <a
-              href="#stacks"
-              className="px-8 py-4 border border-slate-700 hover:border-electric text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-800/50 hover-lift-3d glass-3d"
+              href="#tech"
+              className="px-8 py-4 border border-slate-700 hover:border-electric text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 hover:bg-slate-800/50 btn-press"
             >
               <Layers className="w-5 h-5" />
-              Explore Supported Stacks
+              Explore Tech Stack
             </a>
           </div>
 
-          {/* Terminal Preview with 3D Effect */}
-          <div className="mt-16 animate-fade-in-up perspective-1000" style={{ animationDelay: '0.4s' }}>
-            <div className="bg-slate-900/80 border border-slate-700/50 rounded-xl overflow-hidden backdrop-blur-sm max-w-2xl glass-3d hover-lift-3d transition-all duration-500">
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-700/50">
-                <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-lg shadow-red-500/30" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-lg shadow-yellow-500/30" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-lg shadow-green-500/30" />
-                <span className="ml-2 text-xs text-slate-500 font-mono">cognifactlab — project-intake</span>
+          {/* Terminal Preview */}
+          <div className="mt-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <div className="bg-slate-900/80 border border-slate-700/50 rounded-xl overflow-hidden backdrop-blur-sm max-w-2xl shadow-2xl">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-700/50 bg-slate-800/30">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                <span className="ml-2 text-xs text-slate-500 font-mono">cognifactlabs — project-intake</span>
               </div>
               <div className="p-4 font-mono text-sm">
-                <p className="text-emerald">$ cognifactlab init --project-field=ai/ml</p>
-                <p className="text-slate-400 mt-1">→ Analyzing student requirements...</p>
-                <p className="text-slate-400">→ Matching mentor with domain expertise...</p>
+                <p className="text-emerald">$ cognifactlabs init --mentorship</p>
+                <p className="text-slate-400 mt-1">→ Analyzing project scope...</p>
                 <p className="text-slate-400">→ Generating architecture blueprint...</p>
-                <p className="text-slate-400">→ Setting up paired-coding environment...</p>
-                <p className="text-electric mt-1">✓ Ready — you build it, we guide you</p>
+                <p className="text-slate-400">→ Setting up development environment...</p>
+                <p className="text-electric mt-1">✓ Ready for paired coding session</p>
                 <p className="text-slate-400 mt-1">$ <span className="cursor-blink"></span></p>
               </div>
             </div>
@@ -212,15 +194,14 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
   );
 }
 
-// ==================== WHAT WE BUILD ====================
-function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
-  const projects = [
+// ==================== SERVICES ====================
+function Services({ onOpenModal }: { onOpenModal: () => void }) {
+  const services = [
     {
       icon: Code2,
       title: 'Software Development',
       description: 'Custom desktop applications, CLI tools, automation scripts, and enterprise software built with modern frameworks.',
       examples: ['Inventory Management Systems', 'ERP Modules', 'Automation Scripts', 'Desktop Applications'],
-      color: 'electric',
       gradient: 'from-electric to-blue-600'
     },
     {
@@ -228,7 +209,6 @@ function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
       title: 'AI / ML Projects',
       description: 'Machine learning models, deep learning systems, NLP pipelines, and AI-powered applications with real-world deployment.',
       examples: ['Image Classification', 'NLP Chatbots', 'Recommendation Engines', 'Predictive Analytics'],
-      color: 'emerald',
       gradient: 'from-emerald to-teal-600'
     },
     {
@@ -236,7 +216,6 @@ function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
       title: 'Mobile Applications',
       description: 'Cross-platform and native mobile apps with modern UI/UX, API integration, and offline capabilities.',
       examples: ['React Native Apps', 'Flutter Applications', 'Android/iOS Native', 'Hybrid Mobile Solutions'],
-      color: 'electric',
       gradient: 'from-purple-500 to-pink-500'
     },
     {
@@ -244,7 +223,6 @@ function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
       title: 'Web Applications',
       description: 'Full-stack web platforms with responsive UIs, secure backends, databases, and cloud deployment.',
       examples: ['E-commerce Platforms', 'SaaS Dashboards', 'Portfolio Sites', 'Admin Panels'],
-      color: 'emerald',
       gradient: 'from-orange-500 to-red-500'
     },
     {
@@ -252,7 +230,6 @@ function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
       title: 'Cloud Deployment',
       description: 'Production-ready deployment on AWS, Azure, GCP, or Render with CI/CD, monitoring, and scalability.',
       examples: ['AWS EC2/Lambda', 'Docker Containers', 'CI/CD Pipelines', 'Serverless Architecture'],
-      color: 'electric',
       gradient: 'from-cyan-500 to-blue-600'
     },
     {
@@ -260,56 +237,52 @@ function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
       title: 'Client-Requirement Projects',
       description: 'Tailored solutions built to your exact specifications — from ideation to deployment with full documentation.',
       examples: ['Custom Business Tools', 'Industry-Specific Solutions', 'Research Prototypes', 'Startup MVPs'],
-      color: 'emerald',
       gradient: 'from-yellow-500 to-orange-500'
     }
   ];
 
   return (
-    <section id="we-build" className="py-24 lg:py-32 relative">
+    <section id="services" className="py-24 lg:py-32 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
-            <Rocket className="w-3.5 h-3.5 text-electric" />
-            <span className="text-xs text-slate-400 font-mono">WHAT WE BUILD</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 mb-6">
+            <Rocket className="w-4 h-4 text-electric" />
+            <span className="text-sm text-slate-300 font-medium">WHAT WE BUILD</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
             Real Projects. <span className="text-electric">Real Skills.</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             We mentor you through building production-grade projects across every major category — 
             not pre-packaged templates you can't explain.
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000">
-          {projects.map((project) => (
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service) => (
             <div
-              key={project.title}
-              className="group relative p-6 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-500 hover:bg-slate-900/50 card-3d glass-3d"
+              key={service.title}
+              className="group relative p-8 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-300 hover:bg-slate-900/50 card-hover"
             >
-              {/* 3D Floating Icon */}
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-electric/20`}>
-                <project.icon className="w-7 h-7 text-white" />
+              {/* Icon */}
+              <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                <service.icon className="w-8 h-8 text-white" />
               </div>
-              
-              {/* 3D Glow Effect on Hover */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-electric/0 via-transparent to-emerald/0 group-hover:from-electric/5 group-hover:to-emerald/5 transition-all duration-500 pointer-events-none" />
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-              <p className="text-sm text-slate-400 mb-4">{project.description}</p>
+              <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+              <p className="text-slate-400 mb-6 leading-relaxed">{service.description}</p>
 
               {/* Examples */}
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Example Builds:</p>
-                <ul className="space-y-1">
-                  {project.examples.map((example) => (
+                <ul className="space-y-2">
+                  {service.examples.map((example) => (
                     <li key={example} className="flex items-center gap-2 text-sm text-slate-300">
-                      <CheckCircle2 className={`w-3.5 h-3.5 flex-shrink-0 ${project.color === 'electric' ? 'text-electric/60' : 'text-emerald/60'}`} />
+                      <CheckCircle2 className="w-4 h-4 text-emerald flex-shrink-0" />
                       {example}
                     </li>
                   ))}
@@ -320,10 +293,10 @@ function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <button
             onClick={onOpenModal}
-            className="px-8 py-4 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-electric/20 inline-flex items-center gap-2"
+            className="px-8 py-4 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-electric/20 inline-flex items-center gap-2 btn-press"
           >
             <Terminal className="w-5 h-5" />
             Tell Us Your Project Idea
@@ -335,7 +308,7 @@ function WhatWeBuild({ onOpenModal }: { onOpenModal: () => void }) {
   );
 }
 
-// ==================== PROCESS (4-Step Blueprint) ====================
+// ==================== PROCESS ====================
 function Process() {
   const steps = [
     {
@@ -343,32 +316,28 @@ function Process() {
       title: 'System Scope & Problem Formulation',
       description: 'Feasibility check, SRS documentation, and dataset design. We define exactly what your system will do and why.',
       icon: Target,
-      color: 'electric',
-      details: ['Problem statement refinement', 'SRS & scope documentation', 'Dataset identification & validation', 'Feasibility analysis report']
+      color: 'electric'
     },
     {
       number: '02',
       title: 'Architecture & Scalable Scaffolding',
       description: 'Clean schemas, modular APIs, Docker configs. Production-grade structure from day one.',
       icon: Layers,
-      color: 'emerald',
-      details: ['System architecture diagrams', 'Database schema design', 'API endpoint mapping', 'Docker & CI/CD configuration']
+      color: 'emerald'
     },
     {
       number: '03',
       title: 'Pair-Coding & Live Debugging',
       description: 'Learn every single function and edge case. No black-box code — you write it, you understand it.',
       icon: Code2,
-      color: 'electric',
-      details: ['Screen-share coding sessions', 'Line-by-line code walkthrough', 'Edge case handling', 'Test-driven development']
+      color: 'electric'
     },
     {
       number: '04',
       title: 'Cloud Deployment & Defense Prep',
       description: 'AWS/Render deployment, PPT diagrams, expected examiner viva questions. You will be ready.',
       icon: Cloud,
-      color: 'emerald',
-      details: ['Live cloud deployment', 'Architecture presentation slides', 'Mock viva sessions', 'Examiner Q&A preparation']
+      color: 'emerald'
     }
   ];
 
@@ -377,56 +346,38 @@ function Process() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
-            <Terminal className="w-3.5 h-3.5 text-electric" />
-            <span className="text-xs text-slate-400 font-mono">THE METHODOLOGY</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 mb-6">
+            <Terminal className="w-4 h-4 text-electric" />
+            <span className="text-sm text-slate-300 font-medium">THE METHODOLOGY</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            The CogniFactlab <span className="text-electric">Blueprint</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+            The CogniFactlabs <span className="text-electric">Blueprint</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             A battle-tested 4-phase engineering process that takes you from concept to deployment-ready, viva-defended project.
           </p>
         </div>
 
-        {/* Steps Grid with 3D Effects */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 perspective-2000">
+        {/* Steps Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
           {steps.map((step, idx) => (
             <div
               key={step.number}
-              className="group relative p-6 lg:p-8 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-500 hover:bg-slate-900/50 card-3d glass-3d"
+              className="group relative p-8 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-300 hover:bg-slate-900/50 card-hover"
             >
-              {/* 3D Step Number */}
-              <div className="absolute top-6 right-6 text-6xl font-bold text-slate-800/30 font-mono group-hover:text-electric/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+              {/* Step Number */}
+              <div className="absolute top-8 right-8 text-6xl font-bold text-slate-800/50 font-mono group-hover:text-slate-700/50 transition-colors">
                 {step.number}
               </div>
 
-              {/* 3D Icon with Depth */}
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${step.color === 'electric' ? 'bg-electric/10 text-electric' : 'bg-emerald/10 text-emerald'} group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg ${step.color === 'electric' ? 'shadow-electric/20' : 'shadow-emerald/20'}`}>
+              {/* Icon */}
+              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${step.color === 'electric' ? 'bg-electric/10 text-electric' : 'bg-emerald/10 text-emerald'} group-hover:scale-110 transition-transform duration-300`}>
                 <step.icon className="w-7 h-7" />
               </div>
-              
-              {/* 3D Glow Effect */}
-              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${step.color === 'electric' ? 'bg-gradient-to-br from-electric/5 to-transparent' : 'bg-gradient-to-br from-emerald/5 to-transparent'}`} />
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-white mb-2 pr-12">{step.title}</h3>
-              <p className="text-slate-400 mb-4">{step.description}</p>
-
-              {/* Details */}
-              <ul className="space-y-2">
-                {step.details.map((detail) => (
-                  <li key={detail} className="flex items-center gap-2 text-sm text-slate-500">
-                    <CheckCircle2 className={`w-4 h-4 flex-shrink-0 ${step.color === 'electric' ? 'text-electric/60' : 'text-emerald/60'}`} />
-                    {detail}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Connector Line */}
-              {idx < steps.length - 1 && (
-                <div className="hidden md:block absolute -bottom-4 left-1/2 w-px h-4 bg-gradient-to-b from-slate-700 to-transparent" />
-              )}
+              <h3 className="text-2xl font-bold text-white mb-3 pr-16">{step.title}</h3>
+              <p className="text-slate-400 leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>
@@ -435,103 +386,75 @@ function Process() {
   );
 }
 
-// ==================== DOMAINS ====================
-function Domains() {
-  const domains = [
-    {
-      title: 'GenAI & LLMs',
-      icon: Brain,
-      color: 'from-purple-500 to-blue-500',
-      borderColor: 'border-purple-500/20',
-      bgColor: 'bg-purple-500/5',
-      description: 'Build intelligent systems powered by large language models.',
-      technologies: ['RAG Pipelines', 'FastAPI Orchestration', 'Vector Embeddings', 'Fine-Tuning', 'LangChain', 'ChromaDB']
-    },
-    {
-      title: 'Computer Vision',
-      icon: Eye,
-      color: 'from-emerald to-teal-500',
-      borderColor: 'border-emerald/20',
-      bgColor: 'bg-emerald/5',
-      description: 'Real-time object detection, defect inspection, and image processing.',
-      technologies: ['YOLOv8 Detection', 'OpenCV Processing', 'Live Camera Streams', 'Surface Defect Inspection', 'Image Segmentation', 'Real-time Inference']
-    },
-    {
-      title: 'Big Data & Analytics',
-      icon: Database,
-      color: 'from-electric to-cyan-500',
-      borderColor: 'border-electric/20',
-      bgColor: 'bg-electric/5',
-      description: 'Scalable data pipelines and end-to-end analytics platforms.',
-      technologies: ['PySpark Pipelines', 'PostgreSQL/MongoDB', 'Data Clustering', 'End-to-End Telemetry', 'ETL Automation', 'Dashboard Integration']
-    },
-    {
-      title: 'Full-Stack Platforms',
-      icon: Globe,
-      color: 'from-orange-500 to-pink-500',
-      borderColor: 'border-orange-500/20',
-      bgColor: 'bg-orange-500/5',
-      description: 'Modern web applications with async backends and responsive UIs.',
-      technologies: ['React/Next.js', 'Async Python APIs', 'Node.js Backend', 'REST/GraphQL', 'Auth Systems', 'Cloud Deployment']
-    }
+// ==================== TECH STACK ====================
+function TechStack() {
+  const stacks = [
+    { category: 'Languages', icon: Code2, color: 'text-electric', items: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'Go', 'Kotlin', 'Dart', 'SQL', 'Bash/Shell'] },
+    { category: 'ML / AI', icon: Brain, color: 'text-emerald', items: ['PyTorch', 'TensorFlow', 'scikit-learn', 'LangChain', 'HuggingFace', 'OpenCV', 'YOLOv8', 'Pandas', 'NumPy', 'spaCy'] },
+    { category: 'Backend', icon: Server, color: 'text-electric', items: ['FastAPI', 'Django', 'Node.js', 'Express', 'Flask', 'Spring Boot', 'GraphQL', 'REST APIs', 'WebSockets', 'gRPC'] },
+    { category: 'Frontend', icon: Globe, color: 'text-emerald', items: ['React', 'Next.js', 'Tailwind CSS', 'Vite', 'Redux', 'Framer Motion', 'shadcn/ui', 'HTML5/CSS3', 'Material UI', 'Bootstrap'] },
+    { category: 'Mobile', icon: Smartphone, color: 'text-electric', items: ['React Native', 'Flutter', 'Kotlin', 'Swift', 'Android Studio', 'Xcode', 'Expo', 'Firebase SDK', 'Push Notifications', 'Offline Storage'] },
+    { category: 'Databases', icon: Database, color: 'text-emerald', items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Elasticsearch', 'Firebase', 'Supabase', 'SQLite', 'Neo4j', 'InfluxDB'] },
+    { category: 'Big Data', icon: Cpu, color: 'text-electric', items: ['PySpark', 'Apache Kafka', 'Apache Airflow', 'Hadoop', 'Power BI', 'Tableau', 'ETL Pipelines', 'Data Warehousing', 'Stream Processing', 'Grafana'] },
+    { category: 'Cloud & DevOps', icon: Cloud, color: 'text-emerald', items: ['AWS (EC2, S3, Lambda)', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'CI/CD', 'Nginx', 'Vercel'] },
+    { category: 'Cybersecurity', icon: Shield, color: 'text-electric', items: ['Wireshark', 'Metasploit', 'Burp Suite', 'Kali Linux', 'Nmap', 'OWASP Top 10', 'Penetration Testing', 'Network Security', 'Cryptography', 'SSL/TLS'] },
+    { category: 'Tools', icon: Terminal, color: 'text-emerald', items: ['Git/GitHub', 'VS Code', 'Postman', 'Jira', 'Figma', 'Linux/Unix', 'Jupyter', 'Google Colab', 'DBeaver', 'Insomnia'] },
   ];
 
   return (
-    <section id="domains" className="py-24 lg:py-32 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent" />
+    <section id="tech" className="py-24 lg:py-32 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
-            <FlaskConical className="w-3.5 h-3.5 text-emerald" />
-            <span className="text-xs text-slate-400 font-mono">LAB DOMAINS</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 mb-6">
+            <Code2 className="w-4 h-4 text-electric" />
+            <span className="text-sm text-slate-300 font-medium">TECHNOLOGY ARSENAL</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Supported <span className="text-emerald">Specializations</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+            Industry-Grade <span className="text-electric">Tech Stack</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            From GenAI to Big Data — we mentor across the full spectrum of modern engineering domains.
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            We work with the same tools used at top tech companies — not outdated academic frameworks.
           </p>
         </div>
 
-        {/* Domains Grid with 3D Effects */}
-        <div className="grid md:grid-cols-2 gap-6 perspective-1000">
-          {domains.map((domain) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {stacks.map((stack) => (
             <div
-              key={domain.title}
-              className={`group relative p-6 lg:p-8 rounded-2xl border ${domain.borderColor} ${domain.bgColor} backdrop-blur-sm hover:scale-[1.02] transition-all duration-500 card-3d glass-3d`}
+              key={stack.category}
+              className="group p-6 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-300 hover:bg-slate-900/50 card-hover"
             >
-              {/* 3D Icon with Depth */}
-              <div className="flex items-center gap-4 mb-4">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${domain.color} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
-                  <domain.icon className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white">{domain.title}</h3>
-                  <p className="text-sm text-slate-400">{domain.description}</p>
-                </div>
+              <div className="flex items-center gap-3 mb-4">
+                <stack.icon className={`w-5 h-5 ${stack.color}`} />
+                <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+                  {stack.category}
+                </h3>
               </div>
-
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-2 mt-4">
-                {domain.technologies.map((tech) => (
+              <div className="flex flex-wrap gap-2">
+                {stack.items.map((item) => (
                   <span
-                    key={tech}
-                    className="px-3 py-1 text-xs font-medium rounded-full bg-slate-800/80 text-slate-300 border border-slate-700/50"
+                    key={item}
+                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800/80 text-slate-300 border border-slate-700/50 hover:border-electric/30 hover:text-electric transition-colors cursor-default"
                   >
-                    {tech}
+                    {item}
                   </span>
                 ))}
               </div>
             </div>
           ))}
         </div>
+
+        <div className="mt-12 text-center">
+          <p className="text-sm text-slate-500 italic">
+            Don't see your preferred tech? We adapt to your requirements. Just mention it in your project brief.
+          </p>
+        </div>
       </div>
     </section>
   );
 }
 
-// ==================== TRUST & PROOF CARDS ====================
+// ==================== TRUST CARDS ====================
 function TrustCards() {
   const projects = [
     {
@@ -569,54 +492,52 @@ function TrustCards() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
-            <Star className="w-3.5 h-3.5 text-yellow-400" />
-            <span className="text-xs text-slate-400 font-mono">PROOF OF WORK</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 mb-6">
+            <Star className="w-4 h-4 text-yellow-400" />
+            <span className="text-sm text-slate-300 font-medium">PROOF OF WORK</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
             Real Projects. <span className="text-electric">Real Results.</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             Every project is built from scratch with full student comprehension — not copy-pasted templates.
           </p>
         </div>
 
-        {/* Stats Row with 3D Effects */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12 perspective-1000">
+        {/* Stats Row */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="text-center p-6 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm card-3d glass-3d hover-lift-3d transition-all duration-500"
+              className="text-center p-8 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm card-hover"
             >
-              <div className="inline-block group-hover:scale-110 transition-transform duration-500">
-                <stat.icon className="w-8 h-8 text-electric mx-auto mb-3" />
-              </div>
-              <div className="text-2xl lg:text-3xl font-bold text-white mb-1">{stat.value}</div>
-              <div className="text-xs text-slate-400">{stat.label}</div>
+              <stat.icon className="w-10 h-10 text-electric mx-auto mb-4" />
+              <div className="text-3xl lg:text-4xl font-bold text-white mb-2">{stat.value}</div>
+              <div className="text-sm text-slate-400">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Project Cards with 3D Effects */}
-        <div className="grid md:grid-cols-3 gap-6 perspective-1000">
+        {/* Project Cards */}
+        <div className="grid md:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div
               key={project.title}
-              className="group p-6 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-electric/30 transition-all duration-500 card-3d glass-3d hover-lift-3d"
+              className="group p-8 rounded-2xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-electric/30 transition-all duration-300 card-hover"
             >
-              {/* 3D Metric Badge */}
-              <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald/10 border border-emerald/20 mb-4 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-emerald/20 transition-all duration-500">
-                <Zap className="w-3 h-3 text-emerald" />
-                <span className="text-xs font-medium text-emerald">{project.metric}</span>
+              {/* Metric Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald/10 border border-emerald/20 mb-6">
+                <Zap className="w-4 h-4 text-emerald" />
+                <span className="text-sm font-medium text-emerald">{project.metric}</span>
               </div>
 
-              <h3 className="text-lg font-bold text-white mb-1">{project.title}</h3>
-              <p className="text-sm text-electric mb-3">{project.subtitle}</p>
-              <p className="text-sm text-slate-400 mb-4">{project.description}</p>
+              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+              <p className="text-sm text-electric mb-4">{project.subtitle}</p>
+              <p className="text-slate-400 mb-6 leading-relaxed">{project.description}</p>
 
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="px-2 py-0.5 text-xs rounded bg-slate-800 text-slate-400">
+                  <span key={tag} className="px-3 py-1 text-xs rounded-lg bg-slate-800 text-slate-400 border border-slate-700/50">
                     {tag}
                   </span>
                 ))}
@@ -626,264 +547,6 @@ function TrustCards() {
         </div>
       </div>
     </section>
-  );
-}
-
-// ==================== TECH STACKS ====================
-function TechStacks() {
-  const stacks = [
-    {
-      category: 'Languages',
-      icon: Code2,
-      color: 'text-electric',
-      items: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'Go', 'Kotlin', 'Dart', 'SQL', 'Bash/Shell']
-    },
-    {
-      category: 'ML / AI & Data Science',
-      icon: Brain,
-      color: 'text-emerald',
-      items: ['PyTorch', 'TensorFlow', 'scikit-learn', 'LangChain', 'HuggingFace', 'OpenCV', 'YOLOv8', 'Pandas', 'NumPy', 'spaCy', 'ChromaDB', 'Pinecone', 'Ollama', 'LlamaIndex']
-    },
-    {
-      category: 'Backend & APIs',
-      icon: Server,
-      color: 'text-electric',
-      items: ['FastAPI', 'Django', 'Node.js', 'Express', 'Flask', 'Spring Boot', 'GraphQL', 'REST APIs', 'WebSockets', 'gRPC', 'JWT Auth', 'OAuth2']
-    },
-    {
-      category: 'Frontend & UI',
-      icon: Globe,
-      color: 'text-emerald',
-      items: ['React', 'Next.js', 'Tailwind CSS', 'Vite', 'Redux', 'Framer Motion', 'shadcn/ui', 'HTML5/CSS3', 'Material UI', 'Bootstrap', 'Three.js']
-    },
-    {
-      category: 'Mobile Development',
-      icon: Smartphone,
-      color: 'text-electric',
-      items: ['React Native', 'Flutter', 'Kotlin', 'Swift', 'Android Studio', 'Xcode', 'Expo', 'Firebase SDK', 'Push Notifications', 'Offline Storage']
-    },
-    {
-      category: 'Databases',
-      icon: Database,
-      color: 'text-emerald',
-      items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Elasticsearch', 'Firebase', 'Supabase', 'SQLite', 'Neo4j', 'InfluxDB', 'Vector DBs']
-    },
-    {
-      category: 'Big Data & Analytics',
-      icon: Cpu,
-      color: 'text-electric',
-      items: ['PySpark', 'Apache Kafka', 'Apache Airflow', 'Hadoop', 'Power BI', 'Tableau', 'ETL Pipelines', 'Data Warehousing', 'Stream Processing', 'Grafana']
-    },
-    {
-      category: 'Cloud & DevOps',
-      icon: Cloud,
-      color: 'text-emerald',
-      items: ['AWS (EC2, S3, Lambda)', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'CI/CD', 'Nginx', 'Vercel', 'Render', 'Netlify']
-    },
-    {
-      category: 'Cybersecurity',
-      icon: Shield,
-      color: 'text-emerald',
-      items: ['Wireshark', 'Metasploit', 'Burp Suite', 'Kali Linux', 'Nmap', 'OWASP Top 10', 'Penetration Testing', 'Network Security', 'Cryptography', 'SSL/TLS']
-    },
-    {
-      category: 'Tools & Workflow',
-      icon: Terminal,
-      color: 'text-electric',
-      items: ['Git/GitHub', 'VS Code', 'Postman', 'Jira', 'Figma', 'Linux/Unix', 'Jupyter', 'Google Colab', 'DBeaver', 'Insomnia', 'Swagger/OpenAPI']
-    },
-  ];
-
-  return (
-    <section id="stacks" className="py-24 lg:py-32 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
-            <Code2 className="w-3.5 h-3.5 text-electric" />
-            <span className="text-xs text-slate-400 font-mono">TECHNOLOGY ARSENAL</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Industry-Grade <span className="text-electric">Tech Stacks</span>
-          </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            We work with the same tools used at top tech companies — not outdated academic frameworks.
-            From AI/ML to Cybersecurity, we've got you covered.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 perspective-1000">
-          {stacks.map((stack) => (
-            <div
-              key={stack.category}
-              className="group p-5 rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm hover:border-slate-700/80 transition-all duration-500 hover:bg-slate-900/50 card-3d glass-3d hover-lift-3d"
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <div className={`p-2 rounded-lg ${stack.color === 'text-electric' ? 'bg-electric/10' : 'bg-emerald/10'} group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}>
-                  <stack.icon className={`w-4 h-4 ${stack.color}`} />
-                </div>
-                <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-                  {stack.category}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {stack.items.map((item) => (
-                  <span
-                    key={item}
-                    className="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-800/80 text-slate-300 border border-slate-700/50 hover:border-electric/30 hover:text-electric hover:scale-105 transition-all duration-300 cursor-default"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom note */}
-        <div className="mt-12 text-center">
-          <p className="text-sm text-slate-500 italic">
-            Don't see your preferred tech? We adapt to your requirements. Just mention it in your project brief.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-
-// ==================== WHY CHOOSE US ====================
-function WhyChooseUs() {
-  const comparisons = [
-    { feature: 'Code Understanding', us: '100% — You write every line', them: '0% — Pre-built, unexplained' },
-    { feature: 'Viva Preparation', us: 'Mock sessions + Q&A bank', them: 'None' },
-    { feature: 'Deployment', us: 'Live cloud deployment', them: 'Localhost only' },
-    { feature: 'Architecture', us: 'Custom, production-grade', them: 'Generic templates' },
-    { feature: 'Post-Submission', us: '7–30 days support', them: 'No support' },
-    { feature: 'Modifications', us: 'You can modify anything', them: 'Locked / encrypted code' },
-    { feature: 'Plagiarism Risk', us: 'Zero — built from scratch', them: 'High — reused templates' },
-    { feature: 'Learning Outcome', us: 'Real engineering skills', them: 'None' },
-  ];
-
-  return (
-    <section className="py-24 lg:py-32 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent" />
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
-            <Award className="w-3.5 h-3.5 text-electric" />
-            <span className="text-xs text-slate-400 font-mono">THE DIFFERENCE</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            CogniFactlab vs <span className="text-red-400">Online Project Sellers</span>
-          </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            See why students choose mentorship over copy-paste projects.
-          </p>
-        </div>
-
-        <div className="rounded-2xl border border-slate-800/50 overflow-hidden glass-3d">
-          {/* Header with 3D Effect */}
-          <div className="grid grid-cols-3 bg-slate-900/80 border-b border-slate-800/50 backdrop-blur-xl">
-            <div className="p-4 text-sm font-semibold text-slate-400">Feature</div>
-            <div className="p-4 text-sm font-semibold text-electric text-center border-l border-slate-800/50 bg-electric/5">
-              CogniFactlab
-            </div>
-            <div className="p-4 text-sm font-semibold text-red-400 text-center border-l border-slate-800/50 bg-red-500/5">
-              Online Project Sellers
-            </div>
-          </div>
-
-          {/* Rows */}
-          {comparisons.map((row, idx) => (
-            <div
-              key={row.feature}
-              className={`grid grid-cols-3 ${idx % 2 === 0 ? 'bg-slate-900/20' : 'bg-transparent'}`}
-            >
-              <div className="p-4 text-sm font-medium text-white">{row.feature}</div>
-              <div className="p-4 text-sm text-emerald text-center border-l border-slate-800/30 flex items-center justify-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                <span>{row.us}</span>
-              </div>
-              <div className="p-4 text-sm text-red-400/80 text-center border-l border-slate-800/30 flex items-center justify-center gap-1.5">
-                <X className="w-4 h-4 flex-shrink-0" />
-                <span>{row.them}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 p-6 rounded-xl border border-emerald/20 bg-emerald/5 text-center">
-          <p className="text-emerald font-semibold mb-1">
-            💡 The Bottom Line
-          </p>
-          <p className="text-slate-300 text-sm">
-            Online sellers give you code you can't explain. We give you skills you'll use for your entire career.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ==================== URGENCY BANNER ====================
-function UrgencyBanner({ onOpenModal }: { onOpenModal: () => void }) {
-  return (
-    <section className="py-12 relative">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative p-6 sm:p-8 rounded-2xl border border-yellow-500/20 bg-gradient-to-r from-yellow-500/5 via-orange-500/5 to-red-500/5 overflow-hidden glass-3d hover-lift-3d">
-          {/* 3D Floating Elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-          
-          {/* 3D Geometric Shapes */}
-          <div className="absolute top-4 right-8 w-8 h-8 border border-yellow-400/30 rotate-45 spin-3d opacity-40" />
-          <div className="absolute bottom-4 right-20 w-4 h-4 bg-yellow-400/40 rounded-full float-3d-fast" />
-          
-          <div className="relative flex flex-col sm:flex-row items-center gap-6">
-            <div className="flex-shrink-0">
-              <div className="w-14 h-14 rounded-xl bg-yellow-500/10 flex items-center justify-center float-3d">
-                <AlertCircle className="w-7 h-7 text-yellow-400" />
-              </div>
-            </div>
-            
-            <div className="flex-1 text-center sm:text-left">
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
-                🚨 Tight Deadline? We've Got You.
-              </h3>
-              <p className="text-sm text-slate-400">
-                Submission in 7 days or less? We offer <span className="text-yellow-400 font-semibold">express mentorship</span> with 
-                dedicated daily sessions. Book immediately — slots fill fast during submission season.
-              </p>
-            </div>
-            
-            <button
-              onClick={onOpenModal}
-              className="flex-shrink-0 px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-xl transition-all duration-200 flex items-center gap-2"
-            >
-              <Zap className="w-5 h-5" />
-              Express Booking
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ==================== FLOATING WHATSAPP ====================
-function FloatingWhatsApp() {
-  return (
-    <a
-      href="https://wa.me/918828730908?text=Hi%2C%20I%20am%20interested%20in%20CogniFactlab%20mentorship"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-green-500 hover:bg-green-400 text-white rounded-full shadow-lg shadow-green-500/30 transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-green-500/50 group"
-    >
-      <MessageSquare className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-      <span className="hidden sm:inline text-sm font-semibold">Chat on WhatsApp</span>
-    </a>
   );
 }
 
@@ -898,7 +561,7 @@ function FAQ() {
     },
     {
       question: 'Do you just give me pre-written zip files?',
-      answer: 'Never. CogniFactlab is an anti-cheating mentorship lab. We build WITH you through active, screen-shared sessions. You write the code, we guide the architecture. This means you actually learn the material, can modify it post-submission, and can confidently defend every decision in your viva. No copy-paste. No black boxes.'
+      answer: 'Never. CogniFactlabs is an anti-cheating mentorship lab. We build WITH you through active, screen-shared sessions. You write the code, we guide the architecture. This means you actually learn the material, can modify it post-submission, and can confidently defend every decision in your viva. No copy-paste. No black boxes.'
     },
     {
       question: 'What happens if our model fails during deployment?',
@@ -906,7 +569,7 @@ function FAQ() {
     },
     {
       question: 'How is this different from buying a project online?',
-      answer: 'Online projects are static, unexplained, and often plagiarized. With CogniFactlab, you get: (1) Custom architecture tailored to your college\'s requirements, (2) Live mentorship where you write every function, (3) Deployment to real cloud infrastructure, (4) Viva defense preparation with mock examiner sessions, (5) Post-submission support for modifications.'
+      answer: 'Online projects are static, unexplained, and often plagiarized. With CogniFactlabs, you get: (1) Custom architecture tailored to your college\'s requirements, (2) Live mentorship where you write every function, (3) Deployment to real cloud infrastructure, (4) Viva defense preparation with mock examiner sessions, (5) Post-submission support for modifications.'
     },
     {
       question: 'What if I have zero coding experience?',
@@ -930,33 +593,33 @@ function FAQ() {
     <section id="faq" className="py-24 lg:py-32 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/30 mb-4">
-            <MessageSquare className="w-3.5 h-3.5 text-emerald" />
-            <span className="text-xs text-slate-400 font-mono">COMMON QUESTIONS</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/30 mb-6">
+            <MessageSquare className="w-4 h-4 text-emerald" />
+            <span className="text-sm text-slate-300 font-medium">COMMON QUESTIONS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
             Frequently Asked <span className="text-emerald">Questions</span>
           </h2>
         </div>
 
-        <div className="space-y-3 perspective-1000">
+        <div className="space-y-4">
           {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm overflow-hidden transition-all duration-500 hover-lift-3d glass-3d"
+              className="rounded-xl border border-slate-800/50 bg-slate-900/30 backdrop-blur-sm overflow-hidden transition-all duration-200"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-5 text-left hover:bg-slate-800/20 transition-all duration-300"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-800/20 transition-colors"
               >
-                <span className="text-sm sm:text-base font-medium text-white pr-4">{faq.question}</span>
+                <span className="text-base font-medium text-white pr-4">{faq.question}</span>
                 <ChevronDown
-                  className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-all duration-500 ${openIndex === idx ? 'rotate-180 text-electric' : ''}`}
+                  className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${openIndex === idx ? 'rotate-180' : ''}`}
                 />
               </button>
               {openIndex === idx && (
-                <div className="px-5 pb-5 animate-fade-in-up">
-                  <p className="text-sm sm:text-base text-slate-400 leading-relaxed">{faq.answer}</p>
+                <div className="px-6 pb-6">
+                  <p className="text-slate-400 leading-relaxed">{faq.answer}</p>
                 </div>
               )}
             </div>
@@ -1018,22 +681,16 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     setIsSubmitting(true);
 
     try {
-      // Send directly to email via Web3Forms
-      const response = await fetch('https://api.web3forms.com/submit', {
+      await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
           access_key: '0e0b8193-e1ab-4cb3-82e4-1cc67c85fe31',
           subject: `🚀 New Project Intake: ${formData.fullName} - ${formData.projectField}`,
-          from_name: 'CogniFactlab Website',
+          from_name: 'CogniFactlabs Website',
           to: 'cogniFactlab@gmail.com',
-          
-          // Form data
           name: formData.fullName,
-          email: 'noreply@cognifactlab.com',
+          email: 'noreply@cognifactlabs.in',
           whatsapp: formData.whatsAppNumber,
           college: formData.college,
           department: formData.department,
@@ -1046,48 +703,10 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           budget: formData.budget,
           whatsapp_opt_in: formData.whatsAppOptIn ? 'Yes' : 'No',
           message: formData.projectIdea,
-          
-          // Additional metadata
           help_required: 'Mentorship & Viva Prep',
           submission_date: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
         })
       });
-
-      const result = await response.json();
-      
-      if (result.success) {
-        console.log('Form submitted successfully');
-      } else {
-        console.error('Form submission failed:', result);
-      }
-
-      // Also send to CRM endpoint (Google Apps Script) - optional
-      try {
-        await fetch('https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec', {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fullName: formData.fullName,
-            whatsAppNumber: formData.whatsAppNumber,
-            college: formData.college,
-            department: formData.department,
-            degree: formData.degree,
-            year: formData.year,
-            requirement: formData.requirement,
-            projectField: formData.projectField,
-            technology: formData.technologies,
-            projectIdea: formData.projectIdea,
-            timeline: formData.timeline,
-            budget: formData.budget,
-            whatsAppOptIn: formData.whatsAppOptIn,
-            helpRequired: 'Mentorship & Viva Prep',
-          }),
-        });
-      } catch (crmError) {
-        console.log('CRM submission skipped (optional)');
-      }
-
     } catch (error) {
       console.error('Submission error:', error);
     }
@@ -1117,12 +736,8 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-
-      {/* Modal */}
       <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0B0F17] border border-slate-700/50 rounded-2xl shadow-2xl">
-        {/* Header */}
         <div className="sticky top-0 bg-[#0B0F17]/95 backdrop-blur-xl border-b border-slate-800/50 p-6 flex items-center justify-between z-10">
           <div>
             <h2 className="text-xl font-bold text-white flex items-center gap-2">
@@ -1136,7 +751,6 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           </button>
         </div>
 
-        {/* Form Content */}
         {isSubmitted ? (
           <div className="p-12 text-center">
             <div className="w-16 h-16 rounded-full bg-emerald/10 flex items-center justify-center mx-auto mb-4">
@@ -1146,18 +760,15 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
             <p className="text-slate-400">We'll reach out via WhatsApp within 24 hours with your technical assessment.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          <form onSubmit={handleSubmit} className="p-6 space-y-6">
             {/* Full Name */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                <Users className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                Full Name *
-              </label>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Full Name *</label>
               <input
                 type="text"
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.fullName ? 'border-red-500' : 'border-slate-700/50'} text-white placeholder-slate-500 focus:outline-none focus:border-electric transition-colors`}
+                className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.fullName ? 'border-red-500' : 'border-slate-700/50'} text-white placeholder-slate-500 focus:outline-none focus:border-electric transition-colors`}
                 placeholder="Enter your full name"
               />
               {errors.fullName && <p className="text-xs text-red-400 mt-1">{errors.fullName}</p>}
@@ -1165,86 +776,71 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
 
             {/* WhatsApp Number */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                <Phone className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                WhatsApp Number (with country code) *
-              </label>
+              <label className="block text-sm font-medium text-slate-300 mb-2">WhatsApp Number (with country code) *</label>
               <input
                 type="tel"
                 value={formData.whatsAppNumber}
                 onChange={(e) => setFormData({ ...formData, whatsAppNumber: e.target.value })}
-                className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.whatsAppNumber ? 'border-red-500' : 'border-slate-700/50'} text-white placeholder-slate-500 focus:outline-none focus:border-electric transition-colors`}
+                className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.whatsAppNumber ? 'border-red-500' : 'border-slate-700/50'} text-white placeholder-slate-500 focus:outline-none focus:border-electric transition-colors`}
                 placeholder="+919876543210"
               />
               {errors.whatsAppNumber && <p className="text-xs text-red-400 mt-1">{errors.whatsAppNumber}</p>}
             </div>
 
-            {/* College & Department Row */}
+            {/* College & Department */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                  <MapPin className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                  College / University *
-                </label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">College / University *</label>
                 <input
                   type="text"
                   value={formData.college}
                   onChange={(e) => setFormData({ ...formData, college: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.college ? 'border-red-500' : 'border-slate-700/50'} text-white placeholder-slate-500 focus:outline-none focus:border-electric transition-colors`}
+                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.college ? 'border-red-500' : 'border-slate-700/50'} text-white placeholder-slate-500 focus:outline-none focus:border-electric transition-colors`}
                   placeholder="Your institution name"
                 />
                 {errors.college && <p className="text-xs text-red-400 mt-1">{errors.college}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                  <GraduationCap className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                  Department *
-                </label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Department *</label>
                 <select
                   value={formData.department}
                   onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.department ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.department ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
                 >
                   <option value="">Select department</option>
                   <option value="Computer Science & Engineering">Computer Science & Engineering</option>
                   <option value="Information Technology">Information Technology</option>
                   <option value="Artificial Intelligence & Data Science">AI & Data Science</option>
                   <option value="Electronics & Communication">Electronics & Communication</option>
-                  <option value="Electrical Engineering">Electrical Engineering</option>
-                  <option value="Mechanical Engineering">Mechanical Engineering</option>
-                  <option value="Civil Engineering">Civil Engineering</option>
-                  <option value="Computer Applications (BCA/MCA)">Computer Applications (BCA/MCA)</option>
                   <option value="Other">Other</option>
                 </select>
                 {errors.department && <p className="text-xs text-red-400 mt-1">{errors.department}</p>}
               </div>
             </div>
 
-            {/* Degree & Year Row */}
+            {/* Degree & Year */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">Degree Program *</label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Degree Program *</label>
                 <select
                   value={formData.degree}
                   onChange={(e) => setFormData({ ...formData, degree: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.degree ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.degree ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
                 >
                   <option value="">Select degree</option>
                   <option value="B.Tech/B.E.">B.Tech / B.E.</option>
                   <option value="BCA">BCA</option>
                   <option value="MCA">MCA</option>
                   <option value="M.Tech">M.Tech</option>
-                  <option value="B.Sc IT">B.Sc IT</option>
-                  <option value="M.Sc IT">M.Sc IT</option>
                 </select>
                 {errors.degree && <p className="text-xs text-red-400 mt-1">{errors.degree}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">Year of Study *</label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Year of Study *</label>
                 <select
                   value={formData.year}
                   onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.year ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.year ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
                 >
                   <option value="">Select year</option>
                   <option value="3rd Year">3rd Year</option>
@@ -1255,41 +851,30 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               </div>
             </div>
 
-            {/* Requirement & Project Field Row */}
+            {/* Requirement & Project Field */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                  <FileText className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                  Project Requirement *
-                </label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Project Requirement *</label>
                 <select
                   value={formData.requirement}
                   onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.requirement ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.requirement ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
                 >
                   <option value="">Select requirement</option>
                   <option value="Major Project">Major / Final Year Project</option>
                   <option value="Mini Project">Mini Project</option>
                   <option value="Internship Project">Internship Project</option>
-                  <option value="Research Project">Research Project</option>
-                  <option value="Hackathon">Hackathon</option>
-                  <option value="Project Debugging">Project Debugging</option>
-                  <option value="Project Deployment">Project Deployment</option>
                   <option value="Viva Preparation">Viva / Defense Preparation</option>
-                  <option value="Resume Project">Resume Project</option>
-                  <option value="Just Exploring">Just Exploring</option>
+                  <option value="Project Debugging">Project Debugging</option>
                 </select>
                 {errors.requirement && <p className="text-xs text-red-400 mt-1">{errors.requirement}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                  <Rocket className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                  Project Field *
-                </label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Project Field *</label>
                 <select
                   value={formData.projectField}
                   onChange={(e) => setFormData({ ...formData, projectField: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.projectField ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.projectField ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
                 >
                   <option value="">Select project field</option>
                   <option value="Software Development">Software Development</option>
@@ -1297,29 +882,22 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                   <option value="Mobile App">Mobile Application</option>
                   <option value="Web Application">Web Application</option>
                   <option value="Cloud Deployment">Cloud Deployment</option>
-                  <option value="Client Requirement">Client Requirement / Custom</option>
-                  <option value="Data Engineering">Data Engineering / Big Data</option>
-                  <option value="IoT">IoT / Embedded</option>
-                  <option value="Cybersecurity">Cybersecurity</option>
                   <option value="Not Sure">Not Sure — Need Guidance</option>
                 </select>
                 {errors.projectField && <p className="text-xs text-red-400 mt-1">{errors.projectField}</p>}
               </div>
             </div>
 
-            {/* Technologies Checkboxes */}
+            {/* Technologies */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                <Code2 className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                Primary Technologies *
-              </label>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Primary Technologies *</label>
               <div className="flex flex-wrap gap-2">
                 {techOptions.map((tech) => (
                   <button
                     key={tech}
                     type="button"
                     onClick={() => handleTechToggle(tech)}
-                    className={`px-3 py-1.5 text-sm rounded-lg border transition-all ${
+                    className={`px-4 py-2 text-sm rounded-lg border transition-all ${
                       formData.technologies.includes(tech)
                         ? 'bg-electric/20 border-electric text-electric'
                         : 'bg-slate-800/50 border-slate-700/50 text-slate-400 hover:border-slate-600'
@@ -1334,31 +912,25 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
 
             {/* Project Concept */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                <Brain className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                Project Concept / Problem Statement *
-              </label>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Project Concept / Problem Statement *</label>
               <textarea
                 value={formData.projectIdea}
                 onChange={(e) => setFormData({ ...formData, projectIdea: e.target.value })}
                 rows={4}
-                className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.projectIdea ? 'border-red-500' : 'border-slate-700/50'} text-white placeholder-slate-500 focus:outline-none focus:border-electric transition-colors resize-none`}
+                className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.projectIdea ? 'border-red-500' : 'border-slate-700/50'} text-white placeholder-slate-500 focus:outline-none focus:border-electric transition-colors resize-none`}
                 placeholder="Describe your project idea, problem you want to solve, or any specific requirements..."
               />
               {errors.projectIdea && <p className="text-xs text-red-400 mt-1">{errors.projectIdea}</p>}
             </div>
 
-            {/* Timeline & Budget Row */}
+            {/* Timeline & Budget */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                  <Clock className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                  Target Timeline *
-                </label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Target Timeline *</label>
                 <select
                   value={formData.timeline}
                   onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.timeline ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.timeline ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
                 >
                   <option value="">Select timeline</option>
                   <option value="Within 7 Days">Within 7 Days</option>
@@ -1368,22 +940,17 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                 {errors.timeline && <p className="text-xs text-red-400 mt-1">{errors.timeline}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                  <DollarSign className="w-4 h-4 inline mr-1.5 text-slate-500" />
-                  Estimated Budget *
-                </label>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Estimated Budget *</label>
                 <select
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg bg-slate-800/50 border ${errors.budget ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
+                  className={`w-full px-4 py-3 rounded-lg bg-slate-800/50 border ${errors.budget ? 'border-red-500' : 'border-slate-700/50'} text-white focus:outline-none focus:border-electric transition-colors`}
                 >
                   <option value="">Select budget range</option>
                   <option value="Below ₹5,000">Below ₹5,000</option>
                   <option value="₹5,000 – ₹10,000">₹5,000 – ₹10,000</option>
                   <option value="₹10,000 – ₹20,000">₹10,000 – ₹20,000</option>
-                  <option value="₹20,000 – ₹30,000">₹20,000 – ₹30,000</option>
-                  <option value="₹30,000+">₹30,000+</option>
-                  <option value="Not Decided">Not Decided</option>
+                  <option value="₹20,000+">₹20,000+</option>
                 </select>
                 {errors.budget && <p className="text-xs text-red-400 mt-1">{errors.budget}</p>}
               </div>
@@ -1408,7 +975,7 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3.5 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-4 bg-electric hover:bg-electric-light text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed btn-press"
             >
               {isSubmitting ? (
                 <>
@@ -1429,26 +996,38 @@ function IntakeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
   );
 }
 
+// ==================== FLOATING WHATSAPP ====================
+function FloatingWhatsApp() {
+  return (
+    <a
+      href="https://wa.me/918828730908?text=Hi%2C%20I%20am%20interested%20in%20CogniFactlabs%20mentorship"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-green-500 hover:bg-green-400 text-white rounded-full shadow-lg shadow-green-500/30 transition-all duration-200 hover:scale-110 group"
+    >
+      <MessageSquare className="w-5 h-5" />
+      <span className="hidden sm:inline text-sm font-semibold">Chat on WhatsApp</span>
+    </a>
+  );
+}
+
 // ==================== FOOTER ====================
 function Footer() {
   return (
-    <footer className="border-t border-slate-800/50 bg-slate-900/30 relative overflow-hidden">
-      {/* 3D Background Elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        <div className="absolute top-10 left-10 w-20 h-20 sphere-3d float-3d-slow opacity-40" />
-        <div className="absolute bottom-10 right-10 w-16 h-16 sphere-3d-emerald float-3d opacity-30" />
-        <div className="absolute top-1/2 right-1/4 w-12 h-12 border border-electric/20 rotate-45 spin-3d" />
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative">
+    <footer className="border-t border-slate-800/50 bg-slate-900/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid md:grid-cols-4 gap-8">
-          {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <FlaskConical className="w-6 h-6 text-electric" />
-              <span className="text-lg font-bold text-white font-mono">
-                Cogni<span className="text-electric">Fact</span>lab
-              </span>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-electric to-emerald flex items-center justify-center">
+                <FlaskConical className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <span className="text-xl font-bold text-white">
+                  Cogni<span className="text-electric">Fact</span>labs
+                </span>
+                <p className="text-[10px] text-slate-500 -mt-1">Project Mentorship Lab</p>
+              </div>
             </div>
             <p className="text-sm text-slate-400 max-w-md mb-4">
               Build It. Understand It. Deploy It. Defend It. — Legitimate project mentoring for Software, AI/ML, 
@@ -1467,11 +1046,10 @@ function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Lab Domains', 'Our Process', 'Tech Stacks', 'Student Reviews', 'FAQ'].map((link) => (
+              {['Services', 'Our Process', 'Tech Stack', 'Student Reviews', 'FAQ'].map((link) => (
                 <li key={link}>
                   <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors">
                     {link}
@@ -1481,7 +1059,6 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">Contact</h4>
             <ul className="space-y-3">
@@ -1501,10 +1078,9 @@ function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-800/50 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            © 2026 CogniFactlab. All rights reserved. We mentor — we don't do your homework.
+            © 2026 CogniFactlabs. All rights reserved. We mentor — we don't do your homework.
           </p>
           <div className="flex items-center gap-4">
             <a href="#" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Privacy Policy</a>
@@ -1525,27 +1101,10 @@ export default function App() {
     <div className="min-h-screen bg-[#0B0F17] text-slate-200">
       <Navbar onOpenModal={() => setIsModalOpen(true)} />
       <Hero onOpenModal={() => setIsModalOpen(true)} />
-      
-      {/* 3D Section Divider */}
-      <div className="relative h-32 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex gap-8 items-center">
-            <div className="w-3 h-3 bg-electric rounded-full float-3d-fast opacity-60" />
-            <div className="w-2 h-2 bg-emerald rounded-full float-3d opacity-40" />
-            <div className="w-4 h-4 border border-electric/30 rotate-45 spin-3d opacity-50" />
-            <div className="w-2 h-2 bg-purple-400 rounded-full float-3d-slow opacity-50" />
-            <div className="w-3 h-3 bg-yellow-400 rounded-full float-3d-fast opacity-40" />
-          </div>
-        </div>
-      </div>
-      
-      <UrgencyBanner onOpenModal={() => setIsModalOpen(true)} />
-      <WhatWeBuild onOpenModal={() => setIsModalOpen(true)} />
+      <Services onOpenModal={() => setIsModalOpen(true)} />
       <Process />
-      <Domains />
-      <TechStacks />
+      <TechStack />
       <TrustCards />
-      <WhyChooseUs />
       <FAQ />
       <Footer />
       <FloatingWhatsApp />
